@@ -1,1 +1,4 @@
-# project-unknow
+# medicine-shop
+
+## Chức năng:
+
