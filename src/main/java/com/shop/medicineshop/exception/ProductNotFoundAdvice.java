@@ -1,3 +1,4 @@
+
 package com.shop.medicineshop.exception;
 
 import org.springframework.http.HttpStatus;

@@ -2,7 +2,7 @@ package com.shop.medicineshop.controller;
 
 
 import com.shop.medicineshop.exception.ProductNotFoundException;
-import com.shop.medicineshop.model.Product;
+import com.shop.medicineshop.model.product.Product;
 import com.shop.medicineshop.reponsitory.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,17 +33,17 @@ public class ProductController {
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
-    @PutMapping("/product/{id}")
-    Product updateProduct(@RequestBody Product newProduct, @PathVariable Long id) {
-        return productRepository.findById(id)
-                .map(product -> {
-                    product.setName(newProduct.getName());
-                    product.setUsedTime(newProduct.getUsedTime());
-                    product.setStatus(newProduct.getStatus());
-                    product.setPrice(newProduct.getPrice());
-                    return productRepository.save(product);
-                }).orElseThrow(() -> new ProductNotFoundException(id));
-    }
+//    @PutMapping("/product/{id}")
+//    Product updateProduct(@RequestBody Product newProduct, @PathVariable Long id) {
+//        return productRepository.findById(id)
+//                .map(product -> {
+//                    product.setName(newProduct.getName());
+//                    product.setUsedTime(newProduct.getUsedTime());
+//                    product.setStatus(newProduct.getStatus());
+//                    product.setPrice(newProduct.getPrice());
+//                    return productRepository.save(product);
+//                }).orElseThrow(() -> new ProductNotFoundException(id));
+//    }
 
     @DeleteMapping("/product/{id}")
     String deleteProduct(@PathVariable Long id){
@@ -64,3 +64,4 @@ public class ProductController {
         return  "Product with id "+ids+" has been deleted success.";
     }
 }
+
