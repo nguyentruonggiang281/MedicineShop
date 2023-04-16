@@ -41,3 +41,4 @@ VALUES  ('1' ,'Viên uống Glutasi Glutathione Phytextra giúp đẹp da, hỗ 
               ('23' ,'Viên uống Léana Ocavill hỗ trợ cân bằng nội tiết tố' ,'https://cdn.nhathuoclongchau.com.vn/unsafe/fit-in/600x600/filters:quality(90):fill(white)/nhathuoclongchau.com.vn/images/product/2022/05/00500122-vien-uong-ho-tro-can-bang-noi-tiet-to-leana-ocavill-60v-7335-628b_large.jpg' ,'25/2/2022 - 25/2/2024' ,'Expires' ,'350000'  ),
               ('24' ,'Viên uống Ironmen Ocavill hỗ trợ tăng cường sinh lý nam giới' ,'https://cdn.nhathuoclongchau.com.vn/unsafe/fit-in/600x600/filters:quality(90):fill(white)/nhathuoclongchau.com.vn/images/product/2022/08/00501597-vien-uong-tang-cuong-sinh-ly-ironmen-ocavill-60v-5022-6302_large.jpg' ,'25/2/2022 - 25/2/2024' ,'Out Of Stock' ,'30000'  );
 
+
