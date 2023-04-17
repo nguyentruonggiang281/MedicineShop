@@ -3,16 +3,15 @@ package com.shop.medicineshop.model.order;
 import com.shop.medicineshop.model.payment.Payment;
 import com.shop.medicineshop.model.customer.Customer;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
