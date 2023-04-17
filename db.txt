@@ -1,19 +1,54 @@
 /* Tạo database MedicineShop */
-CREATE DATABASE MedicineShop
+CREATE DATABASE IF NOT EXISTS medicineshop CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+INSERT INTO `category`(`name`, `slug`, `status`, `created_at`)
+VALUES
+('Thực phẩm chức năng', '/thuc-pham-chuc-nang', 1, NOW()),
+('Dược mỹ phẩm', '/duoc-my-pham', 1, NOW()),
+('Chăm sóc cá nhân', '/cham-soc-ca-nhan', 1, NOW()),
+('Thuốc', '/thuoc', 1, NOW()),
+('Thiết bị y tế', '/thiet-bi-y-te', 1, NOW()),
+('Bệnh', '/benh', 1, NOW()),
+('Góc sức khỏe', '/goc-suc-khoe', 1, NOW()),
+('Hệ thống nhà thuốc', '/he-thong-nha-thuoc', 1, NOW());
 
 
-ALTER DATABASE MedicineShop CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+INSERT INTO`category`(`name`, `slug`, `parent_id`, `status`, `created_at`)
+VALUES
+('Dinh dưỡng', CONCAT('/thuc-pham-chuc-nang', '/dinh-duong'), (SELECT`c`.`category_id` FROM`category` AS`c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Sinh lý - Nội tiết tố', CONCAT('/thuc-pham-chuc-nang', '/sinh-ly-noi-tiet-to'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Cải thiện tăng cường chức năng', CONCAT('/thuc-pham-chuc-nang', '/cai-thien-tang-cuong-chuc-nang'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Hỗ trợ làm đẹp', CONCAT('/thuc-pham-chuc-nang', '/ho-tro-lam-dep'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Thần kinh não', CONCAT('/thuc-pham-chuc-nang', '/than-kinh-nao'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Hỗ trợ tiêu hóa', CONCAT('/thuc-pham-chuc-nang', '/ho-tro-tieu-hoa'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Sức khỏe tim mạch', CONCAT('/thuc-pham-chuc-nang', '/suc-khoe-tim-mach'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Vitamin & Khoáng chất', CONCAT('/thuc-pham-chuc-nang', '/vitamin-khoang-chat'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+('Hỗ trợ điều trị', CONCAT('/thuc-pham-chuc-nang', '/ho-tro-dieu-tri'), (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/thuc-pham-chuc-nang'), 1, NOW()),
+
+('Mỹ phẩm trang điểm', '/duoc-my-pham/my-pham-trang-diem', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
+('Chăm sóc cơ thể', '/duoc-my-pham/cham-soc-co-the', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
+('Chăm sóc da mặt', '/duoc-my-pham/cham-soc-da-mat', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
+('Chăm sóc da vùng mắt', '/duoc-my-pham/cham-soc-da-vung-mat', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
+('Chăm sóc tóc - da đầu', '/duoc-my-pham/cham-soc-toc-da-dau', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
+('Sản phẩm từ thiên nhiên', '/duoc-my-pham/san-pham-tu-thien-nhien', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
+('Giải pháp làn da', '/duoc-my-pham/giai-phap-lan-da', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
+
+('Thiết bị làm đẹp', '/cham-soc-ca-nhan/thiet-bi-lam-dep', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Chăm sóc răng miệng', '/cham-soc-ca-nhan/cham-soc-rang-mieng', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Hỗ trợ tình dục', '/cham-soc-ca-nhan/ho-tro-tinh-duc', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Vệ sinh cá nhân', '/cham-soc-ca-nhan/ve-sinh-ca-nhan', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Hàng tổng hợp', '/cham-soc-ca-nhan/hang-tong-hop', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Đồ gia đình', '/cham-soc-ca-nhan/do-gia-dinh', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Thực phẩm - Đồ uống', '/cham-soc-ca-nhan/thuc-pham-do-uong', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Tinh dầu các loại', '/cham-soc-ca-nhan/tinh-dau-cac-loai', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+
+( 'Công cụ theo dõi', CONCAT('/thiet-bi-y-te', "/cong-cu-theo-doi"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+( 'Dụng cụ sơ cứu', CONCAT('/thiet-bi-y-te', "/dung-cu-so-cuu"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+( 'Dụng cụ y tế', CONCAT('/thiet-bi-y-te', "/dung-cu-y-te"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+( 'Khẩu trang', CONCAT('/thiet-bi-y-te', "/khau-trang"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()) ;
 
 
-/* Tạo TABLE Product */
-CREATE TABLE Product(
-	id INT,
-    name VARCHAR(150),
-	img BLOB(300),
-    used_time VARCHAR(26),
-    status VARCHAR(12),
-    price INT
-)
+
 
 INSERT INTO Product (id,name,img,used_time,status,price)
 VALUES  ('1' ,'Viên uống Glutasi Glutathione Phytextra giúp đẹp da, hỗ trợ chống oxy hóa' ,'https://cdn.nhathuoclongchau.com.vn/unsafe/fit-in/600x600/filters:quality(90):fill(white)/nhathuoclongchau.com.vn/images/product/2022/07/00021675-glutasi-phytextra-60v-5894-62c3_large.jpg' ,'25/2/2022 - 25/2/2024' ,'Out Of Stock' ,'30000'  ),

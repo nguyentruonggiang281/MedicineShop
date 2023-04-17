@@ -3,13 +3,14 @@ package com.shop.medicineshop.model.review;
 import com.shop.medicineshop.model.customer.Customer;
 import com.shop.medicineshop.model.product.Product;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "review")
-@Data
+@Getter
+@Setter
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

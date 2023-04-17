@@ -22,7 +22,7 @@ public class SpringdocConfig {
 
     @Bean
     public GroupedOpenApi authenticationApi(){
-        String [] paths = {"/dashboard/**"};
+        String [] paths = {"/api/products/**"};
         return GroupedOpenApi.builder()
                 .group("Dashboard")
                 .pathsToMatch(paths)
@@ -30,9 +30,17 @@ public class SpringdocConfig {
     }
     @Bean
     public GroupedOpenApi postApi(){
-        String [] paths = {"/post/**"};
+        String [] paths = {"/api/categories/**"};
         return GroupedOpenApi.builder()
                 .group("Post")
+                .pathsToMatch(paths)
+                .build();
+    }
+    @Bean
+    public GroupedOpenApi image(){
+        String [] paths = {"/images/**"};
+        return GroupedOpenApi.builder()
+                .group("image")
                 .pathsToMatch(paths)
                 .build();
     }
