@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,7 @@ public class ImageController {
         List<Image> images = imageRepository.findAll();
         return ResponseEntity.ok().body(images);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteImage(@PathVariable("id") Long id) throws IOException {
 //        Image image = imageRepository.findById(id);
@@ -51,6 +53,37 @@ public class ImageController {
 //        Map deleteResult = cloudinary.uploader().destroy(image.getName(), ObjectUtils.emptyMap());
 //        imageRepository.delete(image);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @PutMapping("/Chuyen-Tu-Long-Chau-Qua-Cloudinary")
+    public ResponseEntity<?> chuyenTuLongChauQuaCloudinary() throws IOException {
+        List<Image> images = imageRepository.findAll();
+        for (int i = 0; i < images.size(); i++) {
+            String imagePath = images.get(i).getUrl(); // Lấy đường dẫn ảnh từ danh sách
+
+            int jpgIndex = imagePath.lastIndexOf(".jpg");
+            int pngIndex = imagePath.lastIndexOf(".png");
+            int jpegIndex = imagePath.lastIndexOf(".jpeg");
+
+            // Lấy vị trí cuối cùng của các định dạng ảnh trong URL
+            int lastIndex = Math.max(jpgIndex, Math.max(pngIndex, jpegIndex));
+
+            // Lấy tên file từ URL
+            String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1, lastIndex);
+
+            // Upload ảnh lên Cloudinary và lấy thông tin về ảnh
+            Map<String, Object> uploadResult = cloudinary.uploader().upload(imagePath, ObjectUtils.asMap("public_id", fileName, "overwrite", true));
+
+
+            // Lấy đường dẫn của ảnh trên Cloudinary
+            String cloudinaryUrl = (String) uploadResult.get("url");
+
+            // Cập nhật đường dẫn của ảnh trong database
+            images.get(i).setUrl(cloudinaryUrl);
+            imageRepository.save(images.get(i)); // Lưu thông tin của bản ghi lại vào database
+        }
+        return ResponseEntity.ok("Images uploaded successfully");
     }
 
 //    @PutMapping("/{id}")
