@@ -33,6 +33,9 @@ VALUES
 ('Sản phẩm từ thiên nhiên', '/duoc-my-pham/san-pham-tu-thien-nhien', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
 ('Giải pháp làn da', '/duoc-my-pham/giai-phap-lan-da', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/duoc-my-pham'), 1, NOW()),
 
+
+
+
 ('Thiết bị làm đẹp', '/cham-soc-ca-nhan/thiet-bi-lam-dep', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 ('Chăm sóc răng miệng', '/cham-soc-ca-nhan/cham-soc-rang-mieng', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 ('Hỗ trợ tình dục', '/cham-soc-ca-nhan/ho-tro-tinh-duc', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
@@ -42,7 +45,35 @@ VALUES
 ('Thực phẩm - Đồ uống', '/cham-soc-ca-nhan/thuc-pham-do-uong', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 ('Tinh dầu các loại', '/cham-soc-ca-nhan/tinh-dau-cac-loai', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 
-
+('Dụng cụ cạo râu', '/dung-cu-cao-rau', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Dụng cụ tẩy lông', '/dung-cu-tay-long', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Nước súc miệng', '/nuoc-suc-mieng', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Chỉ nha khoa', '/chi-nha-khoa', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Kem đánh răng', '/kem-danh-rang', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Bàn chải đánh răng', '/ban-chai-danh-rang', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Chăm sóc răng', '/cham-soc-rang', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Bao cao su', '/bao-cao-su', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Gel bôi trơn', '/gel-boi-tron', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Băng vệ sinh', '/bang-ve-sinh', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Nước rửa tay', '/nuoc-rua-tay', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Dung dịch vệ sinh phụ nữ', '/dung-dich-ve-sinh-phu-nu', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Vệ sinh tai', '/ve-sinh-tai', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Khăn giấy, khăn ướt', '/khan-giay-khan-uot', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Phụ kiện da tóc móng', '/phu-kien-da-toc-mong', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Đồ dùng cho bé', '/do-dung-cho-be', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Đồ dùng cho mẹ', '/do-dung-cho-me', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Chỗng muỗi & con trùng', '/chong-muoi-con-trung', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Kẹo cứng', '/keo-cung', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Kẹo dẻo', '/keo-deo', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Kẹo cao su', '/keo-cao-su', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Nước uống không gas', '/nuoc-uong-khong-gas', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Sữa nước', '/sua-nuoc', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Trà', '/tra', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Bánh', '/banh', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Nước Yến', '/nuoc-yen', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Tinh dầu massage', '/tinh-dau-massage', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Tinh dầu trị cảm', '/tinh-dau-tri-cam', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
+('Tinh dầu xông', '/tinh-dau-xong', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 
 
 ( 'Công cụ theo dõi', CONCAT('/thiet-bi-y-te', "/cong-cu-theo-doi"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
