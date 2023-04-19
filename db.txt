@@ -42,11 +42,36 @@ VALUES
 ('Thực phẩm - Đồ uống', '/cham-soc-ca-nhan/thuc-pham-do-uong', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 ('Tinh dầu các loại', '/cham-soc-ca-nhan/tinh-dau-cac-loai', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 
+
+
+
 ( 'Công cụ theo dõi', CONCAT('/thiet-bi-y-te', "/cong-cu-theo-doi"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
 ( 'Dụng cụ sơ cứu', CONCAT('/thiet-bi-y-te', "/dung-cu-so-cuu"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
 ( 'Dụng cụ y tế', CONCAT('/thiet-bi-y-te', "/dung-cu-y-te"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
-( 'Khẩu trang', CONCAT('/thiet-bi-y-te', "/khau-trang"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()) ;
+( 'Khẩu trang', CONCAT('/thiet-bi-y-te', "/khau-trang"), (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()) ,
 
+ ('Thử thai', '/thu-thai', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Nhiệt kế', '/nhiet-ke', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Máy đo huyết áp', '/may-do-huyet-ap', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Máy, que thử đường huyết', '/may-que-thu-duong-huyet', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Bông y tế', '/bong-y-te', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Băng y tế', '/bang-y-te', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Cồn và nước sát trùng', '/con-nuoc-sat-trung', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Tăm bông', '/tam-bong', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Miếng dán giảm đau', '/mieng-dan-giam-dau', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Chăm sóc vết thương', '/cham-soc-vet-thuong', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Xịt giảm đau', '/xit-giam-dau', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Túi chườm', '/tui-chuom', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Dụng cụ vệ sinh mũi', '/dung-cu-ve-sinh-mui', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Kim các loại', '/kim-cac-loai', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Dụng cụ khác', '/dung-cu-khac', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()), 
+ ('Đai lưng', '/dai-lung', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()), 
+ ('Đai nẹp', '/dai-nep', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()), 
+ ('Dụng cụ vệ sinh tai', '/dung-cu-ve-sinh-tai', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()), 
+ ('Găng tay', '/gang-tay', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()), 
+ ('Vớ ngăn tĩnh mạch', '/vo-ngan-tinh-mach', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Khẩu trang y tế', '/khau-trang-y-te', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
+ ('Khẩu trang vải', '/khau-trang-vai', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW());
 
 
 
