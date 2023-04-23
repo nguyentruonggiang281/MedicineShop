@@ -36,6 +36,83 @@ VALUES
 
 
 
+
+
+
+
+('Trang điểm mặt', '/duoc-my-pham/my-pham-trang-diem/trang-diem-mat', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Dụng cụ trang điểm', '/duoc-my-pham/my-pham-trang-diem/dung-cu-trang-diem', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Son môi', '/duoc-my-pham/my-pham-trang-diem/son-moi',(SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+
+('Sữa tắm, xà bông', '/duoc-my-pham/cham-soc-co-the/sua-tam-xa-bong', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Dưỡng thể', '/duoc-my-pham/cham-soc-co-the/duong-the', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Chăm sóc ngực', '/duoc-my-pham/cham-soc-co-the/cham-soc-nguc', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Khử mùi', '/duoc-my-pham/cham-soc-co-the/khu-mui', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Trị nứt da', '/duoc-my-pham/cham-soc-co-the/tri-nut-da', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Dưỡng tay, chân', '/duoc-my-pham/cham-soc-co-the/duong-tay-chan', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Chống nắng toàn thân', '/duoc-my-pham/cham-soc-co-the/chong-nang-toan-than', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+('Massage', '/duoc-my-pham/cham-soc-co-the/massage', (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham'), 1, NOW()),
+
+('Chống nắng da mặt', '/duoc-my-pham/cham-soc-da-mat/chong-nang-da-mat', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Tẩy trang', '/duoc-my-pham/cham-soc-da-mat/tay-trang', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Sữa rửa mặt (Kem, gel, sữa)', '/duoc-my-pham/cham-soc-da-mat/sua-rua-mat', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Tẩy tế bào chết', '/duoc-my-pham/cham-soc-da-mat/tay-te-bao-chet', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Toner (nước hoa hồng) / Lotion', '/duoc-my-pham/cham-soc-da-mat/toner', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Mặt nạ', '/duoc-my-pham/cham-soc-da-mat/mat-na', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Serum, Essence hoặc Ampoule', '/duoc-my-pham/cham-soc-da-mat/serum-essence-ampoule', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Dưỡng da mặt', '/duoc-my-pham/cham-soc-da-mat/duong-da-mat', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+('Xịt khoáng', '/duoc-my-pham/cham-soc-da-mat/xit-khoang', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-mat'), 1, NOW()),
+
+('Dưỡng da mắt', '/duoc-my-pham/cham-soc-da-vung-mat/duong-da-mat', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-vung-mat'), 1, NOW()),
+       ('Trị quầng thâm, bọng mắt', '/duoc-my-pham/cham-soc-da-vung-mat/tri-quang-tham-bong-mat', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-vung-mat'), 1, NOW()),
+       ('Xóa nếp nhăn vùng mắt', '/duoc-my-pham/cham-soc-da-vung-mat/xoa-nep-nhan-vung-mat', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-da-vung-mat'), 1, NOW()),
+
+('Dầu gội dầu xả', '/duoc-my-pham/cham-soc-toc-da-dau/dau-goi-dau-xa', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-toc-da-dau'), 1, NOW()),
+       ('Dưỡng tóc, ủ tóc', '/duoc-my-pham/cham-soc-toc-da-dau/duong-toc-u-toc', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-toc-da-dau'), 1, NOW()),
+       ('Đặc trị cho tóc', '/duoc-my-pham/cham-soc-toc-da-dau/dac-tri-cho-toc', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-toc-da-dau'), 1, NOW()),
+       ('Dầu gội trị nấm', '/duoc-my-pham/cham-soc-toc-da-dau/dau-goi-tri-nam', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/cham-soc-toc-da-dau'), 1, NOW()),
+
+('Tinh dầu', '/duoc-my-pham/san-pham-tu-thien-nhien/tinh-dau', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/san-pham-tu-thien-nhien'), 1, NOW()),
+       ('Dầu dừa', '/duoc-my-pham/san-pham-tu-thien-nhien/dau-dua', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/san-pham-tu-thien-nhien'), 1, NOW()),
+        
+('Viêm da cơ địa', '/duoc-my-pham/giai-phap-lan-da/viem-da-co-dia', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+       ('Da sạm, xỉn màu', '/duoc-my-pham/giai-phap-lan-da/da-sam-xin-mau', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+       ('Da bị kích ứng', '/duoc-my-pham/giai-phap-lan-da/da-bi-kich-ung', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+       ('Tái tạo, chống lão hóa da', '/duoc-my-pham/giai-phap-lan-da/tai-tao-chong-lao-hoa-da', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+       ('Da bị khô, thiếu ẩm', '/duoc-my-pham/giai-phap-lan-da/da-bi-kho-thieu-am', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+       ('Nám, tàn nhang, đốm nâu', '/duoc-my-pham/giai-phap-lan-da/nam-tan-nhang-dom-nau', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+       ('Da bị mụn', '/duoc-my-pham/giai-phap-lan-da/da-bi-mun', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+       ('Trị sẹo, mờ vết thâm', '/duoc-my-pham/giai-phap-lan-da/tri-seo-mo-vet-tham', 
+        (SELECT c.category_id FROM category AS c WHERE c.slug = '/duoc-my-pham/giai-phap-lan-da'), 1, NOW()),
+
+
+
+
 ('Thiết bị làm đẹp', '/cham-soc-ca-nhan/thiet-bi-lam-dep', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 ('Chăm sóc răng miệng', '/cham-soc-ca-nhan/cham-soc-rang-mieng', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
 ('Hỗ trợ tình dục', '/cham-soc-ca-nhan/ho-tro-tinh-duc', (SELECT`c`.`category_id` FROM `category` AS `c` WHERE`c`.`slug` = '/cham-soc-ca-nhan'), 1, NOW()),
