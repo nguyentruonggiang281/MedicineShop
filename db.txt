@@ -323,9 +323,7 @@ VALUES
 ('Vớ ngăn tĩnh mạch', '/thiet-bi-y-te/dung-cu-y-te/vo-ngan-tinh-mach', (SELECT`c`.`category_id` FROM`category` AS`c` WHERE`c`.`slug` = '/thiet-bi-y-te/dung-cu-y-te'), 1, NOW()),
 
 ('Khẩu trang y tế', '/thiet-bi-y-te/khau-trang/khau-trang-y-te', (SELECT`c`.`category_id` FROM`category` AS`c` WHERE`c`.`slug` = '/thiet-bi-y-te/khau-trang'), 1, NOW()),
-('Khẩu trang vải', '/thiet-bi-y-te/khau-trang/khau-trang-vai', (SELECT`c`.`category_id` FROM`category` AS`c` WHERE`c`.`slug` = '/thiet-bi-y-te/khau-trang'), 1, NOW())
-
-;
+('Khẩu trang vải', '/thiet-bi-y-te/khau-trang/khau-trang-vai', (SELECT`c`.`category_id` FROM`category` AS`c` WHERE`c`.`slug` = '/thiet-bi-y-te/khau-trang'), 1, NOW()),
 
 
  ('Thử thai', '/thu-thai', (SELECT `c`.`category_id` FROM `category` AS `c` WHERE `c`.`slug` = '/thiet-bi-y-te'), 1, NOW()),
