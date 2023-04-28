@@ -3,6 +3,8 @@ package com.shop.medicineshop.model.category;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "category")
@@ -24,8 +26,9 @@ public class Category {
     @Column(name = "slug", unique = true)
     private String slug;
 
-    @Column(name = "parent_id")
-    private Integer parentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id", referencedColumnName = "category_id")
+    private Category parentCategory;
 
     @Column(name = "description")
     private String description;

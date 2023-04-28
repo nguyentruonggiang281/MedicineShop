@@ -56,35 +56,35 @@ public class ImageController {
     }
 
 
-    @PutMapping("/Chuyen-Tu-Long-Chau-Qua-Cloudinary")
-    public ResponseEntity<?> chuyenTuLongChauQuaCloudinary() throws IOException {
-        List<Image> images = imageRepository.findAll();
-        for (int i = 0; i < images.size(); i++) {
-            String imagePath = images.get(i).getUrl(); // Lấy đường dẫn ảnh từ danh sách
+    /**
+ * Uploads images to Cloudinary and updates their URLs in the database.
+ *
+ * @return ResponseEntity with a success message
+ */
+@PutMapping("/chuyen-tu-long-chau-qua-cloudinary")
+public ResponseEntity<String> uploadImagesToCloudinaryAndSaveUrls() throws IOException {
+    List<Image> images = imageRepository.findAll();
 
-            int jpgIndex = imagePath.lastIndexOf(".jpg");
-            int pngIndex = imagePath.lastIndexOf(".png");
-            int jpegIndex = imagePath.lastIndexOf(".jpeg");
+    for (Image image : images) {
+        String imageUrl = image.getUrl();
 
-            // Lấy vị trí cuối cùng của các định dạng ảnh trong URL
-            int lastIndex = Math.max(jpgIndex, Math.max(pngIndex, jpegIndex));
+        // Get the file extension and file name from the image URL
+        int lastDotIndex = imageUrl.lastIndexOf('.');
+        String fileExtension = imageUrl.substring(lastDotIndex + 1);
+        String fileName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1, lastDotIndex);
 
-            // Lấy tên file từ URL
-            String fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1, lastIndex);
+        // Upload the image to Cloudinary and get its public URL
+        Map<String, Object> uploadResult = cloudinary.uploader().upload(imageUrl, ObjectUtils.asMap("public_id", fileName, "overwrite", true));
+        String cloudinaryUrl = (String) uploadResult.get("url");
 
-            // Upload ảnh lên Cloudinary và lấy thông tin về ảnh
-            Map<String, Object> uploadResult = cloudinary.uploader().upload(imagePath, ObjectUtils.asMap("public_id", fileName, "overwrite", true));
-
-
-            // Lấy đường dẫn của ảnh trên Cloudinary
-            String cloudinaryUrl = (String) uploadResult.get("url");
-
-            // Cập nhật đường dẫn của ảnh trong database
-            images.get(i).setUrl(cloudinaryUrl);
-            imageRepository.save(images.get(i)); // Lưu thông tin của bản ghi lại vào database
-        }
-        return ResponseEntity.ok("Images uploaded successfully");
+        // Update the image URL in the database
+        image.setUrl(cloudinaryUrl);
+        imageRepository.save(image);
     }
+
+    return ResponseEntity.ok("Images uploaded successfully");
+}
+
 
 //    @PutMapping("/{id}")
 //    public ResponseEntity<Image> updateImage(@PathVariable("id") Long id, @RequestBody Image image) throws IOException {

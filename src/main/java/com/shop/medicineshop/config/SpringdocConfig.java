@@ -1,4 +1,4 @@
-package com.shop.medicineshop;
+package com.shop.medicineshop.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -19,20 +19,19 @@ public class SpringdocConfig {
                 .info(new Info().title("Spring Doc").version("1.0.0").description("Spring doc"));
     }
 
-
     @Bean
     public GroupedOpenApi authenticationApi(){
-        String [] paths = {"/api/products/**"};
+        String [] paths = {"/api/v1/products/**"};
         return GroupedOpenApi.builder()
-                .group("Dashboard")
+                .group("Product")
                 .pathsToMatch(paths)
                 .build();
     }
     @Bean
     public GroupedOpenApi postApi(){
-        String [] paths = {"/api/categories/**"};
+        String [] paths = {"/api/v1/categories/**"};
         return GroupedOpenApi.builder()
-                .group("Post")
+                .group("Categories")
                 .pathsToMatch(paths)
                 .build();
     }

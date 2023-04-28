@@ -1,4 +1,4 @@
-package com.shop.medicineshop.service;
+package com.shop.medicineshop.model.product;
 
 import com.shop.medicineshop.model.product.Product;
 import com.shop.medicineshop.reponsitory.ProductRepository;
@@ -22,6 +22,10 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public List<Product> searchProducts(String query) {
+        return productRepository.findByNameContaining(query);
+    }
+
     public void addProduct(Product product) {
         productRepository.save(product);
     }
@@ -37,7 +41,16 @@ public class ProductService {
         }
     }
 
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+    public void deleteProduct(List<Long> ids) {
+        ids.forEach(id -> {
+            if (productRepository.existsById(id)) {
+                productRepository.deleteById(id);
+            }
+        });
+//        productRepository.deleteById(id);
+    }
+
+    public List<Product> getProductsByCategoryId(Integer categoryId) {
+        return productRepository.findByCategoryId(categoryId);
     }
 }
