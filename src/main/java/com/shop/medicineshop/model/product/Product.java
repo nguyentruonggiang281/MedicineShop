@@ -28,8 +28,8 @@ public class Product {
     @Column(name = "slug", unique = true)
     private String slug;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "short_description")
+    private String shortDescription;
 
     @Column(name = "price", nullable = false)
     private float price;
@@ -57,4 +57,7 @@ public class Product {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
+//    @OneToOne(mappedBy = "product")
+//    private ProductDetail productDetail;
 }
