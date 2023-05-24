@@ -1,0 +1,203 @@
+    INSERT INTO `tags`(`tag_id`, `name`, `slug`)
+      VALUES
+    (1, 'Trẻ em', 'tre-em'),
+    (2, 'Mẹ và bé', 'me-va-be'),
+    (3, 'Người cao tuổi', 'nguoi-cao-tuoi'),
+    (4, 'Người bị tiểu đường', 'nguoi-bi-tieu-duong');
+
+INSERT INTO product_tags(product_id, tag_id)
+VALUES
+    (34, 1),
+    (50, 1),
+    (183, 1),
+    (221, 1),
+    (281, 1),
+    (367, 1),
+    (388, 1),
+    (524, 1),
+    (545, 1),
+    (587, 1),
+    (685, 1),
+    (726, 1),
+    (756, 1),
+    (1108, 1),
+    (1414, 1),
+    (1440, 1),
+    (1441, 1),
+    (1544, 1),
+    (1548, 1),
+    (1593,1),
+    (1618, 1),
+    (1626, 1),
+    (1654, 1),
+    (1670, 1),
+    (1673, 1);
+
+    INSERT INTO `product_tags`(`product_id`, `tag_id`)
+    VALUES
+        (1629, 2),
+        (1542, 2),
+        (1538, 2),
+        (1452, 2),
+        (1435, 2),
+        (1396, 2),
+        (1377, 2),
+        (1214, 2),
+        (1191, 2),
+        (1190, 2),
+        (1105, 2),
+        (931, 2),
+        (724, 2),
+        (718, 2),
+        (668, 2),
+        (660, 2),
+        (633, 2),
+        (571, 2),
+        (535, 2),
+        (512, 2),
+        (501, 2),
+        (496, 2),
+        (488, 2),
+        (476, 2),
+        (401, 2),
+        (372, 2),
+        (298, 2),
+        (256, 2),
+        (240, 2),
+        (227, 2),
+        (215, 2),
+        (192, 2),
+        (153, 2),
+        (110, 2),
+        (79, 2),
+        (73, 2),
+        (29, 2);
+
+        INSERT INTO product_tags(product_id, tag_id) VALUES (3, 3),
+         (22, 3), (44, 3), (69, 3), (96, 3), (1612, 3), (1400, 3),
+         (1133, 3), (220, 3), (76, 3), (75, 3), (783, 3), (784, 3),
+         (803, 3), (23, 3), (12, 3), (11, 3), (97, 3), (642, 3), (887, 3),
+         (908, 3), (945, 3);
+
+        INSERT INTO product_tags(product_id, tag_id)
+        VALUES
+            (9, 4),
+            (781, 4),
+            (794, 4),
+            (802, 4),
+            (849, 4),
+            (107, 4),
+            (108, 4),
+            (153, 4),
+            (201, 4),
+            (913, 4),
+            (202, 4),
+            (242, 4),
+            (1009,4),
+            (1307, 4),
+            (251, 4),
+            (801, 4),
+            (1312, 4),
+            (1315, 4),
+            (889, 4),
+            (990, 4),
+            (1093, 4),
+            (1221, 4),
+            (1316, 4),
+            (1321, 4),
+            (1346, 4),
+            (1395, 4),
+            (1467, 4),
+            (1471, 4),
+            (1621, 4),
+            (1715, 4),
+            (1474, 4),
+            (1510, 4),
+            (1532, 4),
+            (1554, 4),
+            (1573, 4),
+            (1597, 4),
+            (1605, 4),
+            (1717, 4),
+            (731, 4),
+            (742, 4);
+
+
+
+
+
+
+UPDATE `category`
+SET `parent_id` = (SELECT `category_id` FROM `category`
+WHERE `name` = 'Thực phẩm chức năng')
+WHERE `name` IN ('Dinh dưỡng', 'Sinh lý - Nội tiết tố', 'Cải thiện tăng cường chức năng', 'Hỗ trợ làmđẹp', 'Thần kinh não', 'Hỗ trợ tiêu hóa', 'Sức khỏe tim mạch', 'Vitamin & Khoáng chất', 'Hỗ trợ điều trị');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Dược mỹ phẩm') WHERE `name` IN ('Mỹ phẩm trang điểm', 'Chăm sóc cơ thể', 'Chăm sóc da mặt', 'Chăm sóc da vùng mắt', 'Chăm sóc tóc - da đầu', 'Sản phẩm từ thiên nhiên','Giải pháp làn da');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Dinh dưỡng') WHERE `name` IN ('Dinh dưỡng trẻ em', 'Sữa');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Sinh lý - Nội tiết tố') WHERE `name` IN ('Sinh lý nữ', 'Sinh lý nam', 'Sức khỏe tình dục', 'Cân bằng nội tiết tố', 'Hỗ trợ mãn kinh');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Cải thiện tăng cường chức năng') WHERE `name` IN ('Chức năng gan','Bổ mắt, bảo vệ mắt','Chống lão hóa','Tăng cường đề kháng, miễn dịch','Hỗ trợ trao đổi chất','Giải rượu, cai rượu');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Hỗ trợ làm đẹp') WHERE `name` IN ('Hỗ trợ giảm cân','Da','Tóc','Kích cỡ ngực','Thực phẩm tăng cân');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Thần kinh não') WHERE `name` IN ('Hỗ trợ giấc ngủ ngon','Kiểm soát căng thẳng','Bổ não - cải thiện trí nhớ','Tuần hoàn máu','Hoạt huyết','Tuần hoàn não');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Hỗ trợ tiêu hóa') WHERE `name` IN ('Vi sinh - Probiotic','Đại tràng','Táo bón','Khó tiêu','Dạ dày, tá tràng');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Sức khỏe tim mạch') WHERE `name` IN ('Suy giãn tĩnh mạch','Giảm Cholesterol','Huyết áp');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Vitamin & Khoáng chất') WHERE `name` IN ('Vitamin C các loại','Vitamin E các loại','Bổ sung Canxi & Vitamin D','Bổ sung sắt & Axit Folic','Dầu cá, Omega 3, DHA','Bổ sung kẽm & Magie','Vitamin tổng hợp');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Hỗ Trợ điều trị') WHERE `name` IN ('Thận, tiền liệt tuyến','Cơ xương khớp','Hỗ trợ điều trị gout','Hô hấp, ho, xoang','Hỗ trợ điều trị trĩ','Hỗ trợ điều trị tiểu đường','Hỗ trợ điều trị ung thư');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Mỹ phẩm trang điểm') WHERE `name` IN ('Trang điểm mặt','Dụng cụ trang điểm','Son môi');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Chăm sóc cơ thể') WHERE `name` IN ('Sữa tắm, xà bông','Dưỡng thể','Chăm sóc ngực','Khử mùi','Trị nứt da','Dưỡng tay, chân','Chỗng nắng toàn thân','Massage');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Chăm sóc da mặt') WHERE `name` IN ('Chống nắng da mặt','Tẩy trang','Sữa rửa mặt (Kem, gel, sữa)','Tẩy tế bào chết','Toner (nước hoa hồng) / Lotion','Mặt nạ','Serum, Essence hoặc Ampoule','Xịt khoáng');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Chăm sóc da vùng mắt') WHERE `name` IN ('Trị quầng thâm, bọng mắt','Xóa nếp nhăn vùng mắt');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Chăm sóc da mặt') WHERE `slug` IN ('/duoc-my-pham/cham-soc-da-mat/duong-da-mat');
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Chăm sóc da vùng mắt') WHERE `slug` IN ('/duoc-my-pham/cham-soc-da-vung-mat/duong-da-mat');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Chăm sóc tóc - da đầu') WHERE `name` IN ('Dầu gội dầu xả','Dưỡng tóc, ủ tóc','Đặc trị cho tóc','Dầu gội trị nấm');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Sản phẩm từ thiên nhiên') WHERE `name` IN ('Tinh dầu','Dầu dừa');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Giải pháp làn da') WHERE `name` IN ('Viêm da cơ địa','Da sạm, xỉn màu','Da bị kích ứng','Tái tạo, chống lão hóa da','Da bị khô, thiếu ẩm','Nám, tàn nhang, đốm nâu','Da bị mụn','Trị sẹo, mờ vết thâm');
+
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Thiết bị làm đẹp') WHERE `name` IN ('Dụng cụ cạo râu','Dụng cụ tẩy lông');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Chăm sóc răng miệng') WHERE `name` IN ('Nước súc miệng','Chỉ nha khoa','Kem đánh răng','Bàn chải đánh răng','Chăm sóc răng');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Hỗ trợ tình dục') WHERE `name` IN ('Bao cao su','Gel bôi trơn');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Vệ sinh cá nhân') WHERE `name` IN ('Băng vệ sinh','Nước rửa tay','Dung dịch vệ sinh phụ nữ','Vệ sinh tai');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Hàng tổng hợp') WHERE `name` IN ('Khăn giấy, khăn ướt','Phụ kiện da tóc móng');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Đồ gia đình') WHERE `name` IN ('Đồ dùng cho bé','Đồ dùng cho mẹ','Chỗng muỗi & con trùng');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Thực phẩm - Đồ uống') WHERE `name` IN ('Kẹo cứng','Kẹo dẻo','Kẹo cao su','Nước uống không gas','Sữa nước','Trà','Bánh','Nước Yến');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Tinh dầu các loại') WHERE `name` IN ('Tinh dầu massage','Tinh dầu trị cảm','Tinh dầu xông');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Công cụ theo dõi') WHERE `name` IN ('Thử thai','Nhiệt kế','Máy đo huyết áp','Máy, que thử đường huyết');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Dụng cụ sơ cứu') WHERE `name` IN ('Bông y tế','Băng y tế','Cồn và nước sát trùng','Tăm bông','Miếng dán giảm đau','Chăm sóc vết thương','Xịt giảm đau');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Dụng cụ y tế') WHERE `name` IN ('Túi chườm','Dụng cụ vệ sinh mũi','Kim các loại','Dụng cụ khác','Đai lưng','Đai nẹp','Dụng cụ vệ sinh tai','Găng tay','Vớ ngăn tĩnh mạch');
+
+UPDATE `category` SET `parent_id` = (SELECT `category_id` FROM `category` WHERE `name` = 'Khẩu trang') WHERE `name` IN ('Khẩu trang y tế','Khẩu trang vải');
+
+UPDATE `product` SET `category_id` = 137 WHERE `category_id` is null
+
+
+
+
+
+

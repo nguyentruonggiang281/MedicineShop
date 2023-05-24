@@ -1,61 +1,104 @@
 package com.shop.medicineshop.controller;
 
 import com.shop.medicineshop.model.product.Product;
-import com.shop.medicineshop.model.product.ProductService;
+import com.shop.medicineshop.model.product.Unit;
+import com.shop.medicineshop.response.product.AssetDTO;
+import com.shop.medicineshop.response.product.ProductDTO;
+import com.shop.medicineshop.response.product.ProductDetailDTO;
+import com.shop.medicineshop.response.product.UnitDTO;
+import com.shop.medicineshop.service.product.AssetService;
+import com.shop.medicineshop.service.product.ProductDetailService;
+import com.shop.medicineshop.service.product.ProductService;
+import com.shop.medicineshop.service.product.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/v1/products")
+@CrossOrigin(origins = "*")
+@RequestMapping("api/v1/products")
 public class ProductController {
+
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductDetailService productDetailService;
+    @Autowired
+    private AssetService assetService;
+    @Autowired
+    private UnitService unitService;
 
-    /**
-     * Truy xuất danh sách tất cả các sản phẩm.
-     *
-     * @return a list of Product objects
-     */
-    @GetMapping("/")
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
-    }
-
-
-    /**
-     * Truy xuất một sản phẩm có ID được chỉ định.
-     *
-     * @param id the ID of the product to retrieve
-     * @return a ResponseEntity containing the product, if found, or a not found response
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> optionalProduct = productService.getProductById(id);
-        if (optionalProduct.isPresent()) {
-            Product product = optionalProduct.get();
-            return ResponseEntity.ok().body(product);
-        } else {
+    //    lấy tất cả sản phẩm
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        if (productService.getAllProducts().isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok().body(productService.getAllProducts());
     }
 
-    /**
-     * Truy xuất danh sách các sản phẩm khớp với truy vấn tìm kiếm đã chỉ định.
-     *
-     * @param query the search query
-     * @return a list of Product objects that match the search query
-     */
-    @GetMapping
-    public List<Product> searchProducts(@RequestParam("search") String query) {
-        return productService.searchProducts(query);
+
+    //    Truy xuất sản phẩm theo ID
+//    @GetMapping("/{id}")
+//    public ResponseEntity<ProductDTO> getProductById(@PathVariable Integer id) {
+//        ProductDTO product = productService.getProductById(id);
+//        if (product == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok().body(product);
+//
+//    }
+
+    //    Search sản phẩm theo tên
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam("search") String query) {
+        if (productService.searchProducts(query).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(productService.searchProducts(query));
     }
+
+    //    Truy xuất hình ảnh sản phẩm theo ID
+    @GetMapping("/{id}/assets")
+    public ResponseEntity<List<AssetDTO>> getProductAssets(@PathVariable Integer id) {
+        if (assetService.getProductAssets(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(assetService.getProductAssets(id));
+    }
+
+    // chi tiết sản phẩm theo ID
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDetailDTO> getProductDetails(@PathVariable Integer id) {
+        if (productDetailService.getProductDetails(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(productDetailService.getProductDetails(id));
+    }
+
+    //    Truy xuất đơn vị của thuốc theo ID
+    @GetMapping("/{id}/units")
+    public ResponseEntity<List<UnitDTO>> getProductUnits(@PathVariable Integer id) {
+        if (unitService.getProductUnits(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(unitService.getProductUnits(id));
+    }
+
+    // lấy danh sách các sản phẩm theo #tag tre-em, me-va-be, nguoi-cao-tuoi, nguoi-bi-tieu-duong
+    @GetMapping("/tags/{tagSlug}")
+    public ResponseEntity<List<ProductDTO>> getProductsByTag(@PathVariable String tagSlug) {
+        if (productService.getProductsByTag(tagSlug).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(productService.getProductsByTag(tagSlug));
+    }
+
 
     /**
      * Thêm một sản phẩm mới vào hệ thống.
@@ -63,46 +106,40 @@ public class ProductController {
      * @param product the new Product object to add
      * @return a ResponseEntity indicating success or failure of the operation
      */
-    @PostMapping("/")
-    public ResponseEntity<?> addProduct(@RequestBody Product product) {
-        productService.addProduct(product);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
 
-    /**
-     * Cập nhật một sản phẩm hiện có với ID được chỉ định.
-     *
-     * @param id the ID of the product to update
-     * @param product the updated Product object
-     * @return a ResponseEntity indicating success or failure of the operation
-     */
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        productService.updateProduct(id, product);
-        return ResponseEntity.ok().build();
-    }
+//    @PostMapping("/")
+//    public ResponseEntity<?> addProduct(@RequestBody Product product) {
+//        productService.addProduct(product);
+//        return ResponseEntity.status(HttpStatus.CREATED).build();
+//    }
+//
+//    /**
+//     * Cập nhật một sản phẩm hiện có với ID được chỉ định.
+//     *
+//     * @param id      the ID of the product to update
+//     * @param product the updated Product object
+//     * @return a ResponseEntity indicating success or failure of the operation
+//     */
+//    @PutMapping("/{id}")
+//    public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+//        productService.updateProduct(id, product);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    /**
+//     * Xóa một sản phẩm có ID được chỉ định.
+//     *
+//     * @param ids the list ID of the product to delete
+//     * @return a ResponseEntity indicating success or failure of the operation
+//     */
+//    @DeleteMapping("/{ids}")
+//    public ResponseEntity<?> deleteProduct(@PathVariable List<Long> ids) {
+//        productService.deleteProduct(ids);
+//        return ResponseEntity.ok().build();
+//    }
 
-    /**
-     * Xóa một sản phẩm có ID được chỉ định.
-     *
-     * @param ids the list ID of the product to delete
-     * @return a ResponseEntity indicating success or failure of the operation
-     */
-    @DeleteMapping("/{ids}")
-    public ResponseEntity<?> deleteProduct(@PathVariable List<Long> ids) {
-        productService.deleteProduct(ids);
-        return ResponseEntity.ok().build();
-    }
 
 }
-
-
-
-
-
-
-
-
 
 
 //@RestController
