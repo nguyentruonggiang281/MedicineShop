@@ -3,14 +3,12 @@ package com.shop.medicineshop.controller;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.shop.medicineshop.model.Image;
-import com.shop.medicineshop.reponsitory.ImageRepository;
+import com.shop.medicineshop.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;

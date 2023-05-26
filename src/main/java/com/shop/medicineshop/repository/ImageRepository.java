@@ -1,4 +1,4 @@
-package com.shop.medicineshop.reponsitory;
+package com.shop.medicineshop.repository;
 
 import com.shop.medicineshop.model.Image;
 import org.springframework.data.jpa.repository.JpaRepository;

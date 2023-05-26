@@ -1,10 +1,12 @@
 package com.shop.medicineshop.model.category;
 
+
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "category")
@@ -12,7 +14,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Component
 public class Category {
 
     @Id
@@ -26,9 +28,8 @@ public class Category {
     @Column(name = "slug", unique = true)
     private String slug;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", referencedColumnName = "category_id")
-    private Category parentCategory;
+    @Column(name = "parent_id")
+    private Integer parentId;
 
     @Column(name = "description")
     private String description;
@@ -41,7 +42,7 @@ public class Category {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -50,4 +51,5 @@ public class Category {
     @Column(name = "deleted_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
+
 }
