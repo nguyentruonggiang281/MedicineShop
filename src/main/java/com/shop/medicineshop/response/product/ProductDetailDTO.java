@@ -9,14 +9,14 @@ import java.util.List;
 
 public record ProductDetailDTO(
         Integer id,
-        Integer categoryID,
+        String category,
         String name,
         String slug,
         List<UnitDTO> units,
         List<AssetDTO> assets,
         String unit,
         String specifications,
-        String asset,
+//        String asset,
         float price,
         Float discount,
         int quantity,

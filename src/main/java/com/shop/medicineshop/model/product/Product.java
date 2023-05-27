@@ -1,6 +1,7 @@
 package com.shop.medicineshop.model.product;
 
 import com.shop.medicineshop.model.category.Category;
+import com.shop.medicineshop.model.store.Store;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -77,4 +78,10 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinTable(name = "store_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "store_id"))
+    private List<Store> stores;
 }
