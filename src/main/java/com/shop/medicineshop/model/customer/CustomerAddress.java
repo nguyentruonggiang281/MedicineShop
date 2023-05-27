@@ -15,7 +15,7 @@ public class CustomerAddress {
     @JoinColumn(name="customer_id")
     private Customer customer;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.LAZY)
     @MapsId("addressId")
     @JoinColumn(name = "address_id")
     private Address address;

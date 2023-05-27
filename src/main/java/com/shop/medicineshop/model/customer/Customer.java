@@ -1,14 +1,24 @@
 package com.shop.medicineshop.model.customer;
 
 import com.shop.medicineshop.model.account.Account;
+import com.shop.medicineshop.model.cart.Cart;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "customer")
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Component
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +38,10 @@ public class Customer {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id")
+    private Cart cart;
 
     @OneToMany(mappedBy="customer", cascade=CascadeType.ALL)
     private List<CustomerAddress> customerAddresses;

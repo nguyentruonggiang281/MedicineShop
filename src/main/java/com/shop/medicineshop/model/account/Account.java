@@ -42,7 +42,7 @@ public class Account implements UserDetails {
     @Column(name = "account_id")
     private Integer id;
 
-    @Column(name = "user_login", nullable = false)
+    @Column(name = "user_login", nullable = false, unique = true)
     private String userLogin;
 
     @Column(name = "password", nullable = false)

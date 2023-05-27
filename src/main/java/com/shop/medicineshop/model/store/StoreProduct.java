@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 @Table(name = "store_product")
 public class StoreProduct {
 
-
     @EmbeddedId
     private StoreProductId id;
 
