@@ -1,55 +1,38 @@
 package com.shop.medicineshop.model.customer;
 
+import com.shop.medicineshop.model.account.Account;
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private Long customerId;
+    private Integer id;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "address", nullable = false)
-    private String address;
-
-    @Column(name = "city", nullable = false)
-    private String city;
-
-    @Column(name = "state", nullable = false)
-    private String state;
-
-    @Column(name = "country", nullable = false)
-    private String country;
-
-    @Column(name = "postal_code", nullable = false)
-    private String postalCode;
-
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", length = 15, unique = true, nullable = false)
     private String phoneNumber;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy="customer", cascade=CascadeType.ALL)
+    private List<CustomerAddress> customerAddresses;
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
 }

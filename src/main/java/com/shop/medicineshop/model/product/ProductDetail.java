@@ -22,6 +22,7 @@ public class ProductDetail {
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
     @Column(name = "brand")
     private String brand;
     @Column(name = "dosage_form")

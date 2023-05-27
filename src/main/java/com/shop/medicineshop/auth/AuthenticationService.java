@@ -1,118 +1,72 @@
 package com.shop.medicineshop.auth;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shop.medicineshop.config.JwtService;
-import com.shop.medicineshop.model.token.Token;
-import com.shop.medicineshop.model.token.TokenRepository;
-import com.shop.medicineshop.model.token.TokenType;
-import com.shop.medicineshop.model.user.Role;
-import com.shop.medicineshop.model.user.User;
-import com.shop.medicineshop.model.user.UserRepository;
+
+import com.shop.medicineshop.jwt.JWTUtil;
+import com.shop.medicineshop.model.account.Account;
+import com.shop.medicineshop.model.account.Role;
+import com.shop.medicineshop.model.account.Status;
+import com.shop.medicineshop.repository.AccountRepository;
+import com.shop.medicineshop.response.account.AccountDTO;
+import com.shop.medicineshop.response.account.AccountDTOMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
-//@Service
-//@RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class AuthenticationService {
-//  private final UserRepository repository;
-//  private final TokenRepository tokenRepository;
-//  private final PasswordEncoder passwordEncoder;
-//  private final JwtService jwtService;
-//  private final AuthenticationManager authenticationManager;
-//
-//  public AuthenticationResponse register(RegisterRequest request) {
-//    var user = User.builder()
-//        .firstname(request.getFirstname())
-//        .lastname(request.getLastname())
-//        .email(request.getEmail())
-//        .password(passwordEncoder.encode(request.getPassword()))
-//        .role(Role.USER)
-//        .build();
-//    repository.save(user);
-////    var savedUser = repository.save(user);
-//    var jwtToken = jwtService.generateToken(user);
-////    var refreshToken = jwtService.generateRefreshToken(user);
-////    saveUserToken(savedUser, jwtToken);
-//
-//    return AuthenticationResponse.builder()
-//            .token(jwtToken)
-////        .accessToken(jwtToken)
-////            .refreshToken(refreshToken)
-//        .build();
-//  }
-//
-//  public AuthenticationResponse authenticate(AuthenticationRequest request) {
-//    authenticationManager.authenticate(
-//        new UsernamePasswordAuthenticationToken(
-//            request.getEmail(),
-//            request.getPassword()
-//        )
-//    );
-//    var user = repository.findByEmail(request.getEmail())
-//        .orElseThrow();
-//    var jwtToken = jwtService.generateToken(user);
-////    var refreshToken = jwtService.generateRefreshToken(user);
-////    revokeAllUserTokens(user);
-//    saveUserToken(user, jwtToken);
-//    return AuthenticationResponse.builder()
-//            .token(jwtToken)
-////        .accessToken(jwtToken)
-////            .refreshToken(refreshToken)
-//        .build();
-//  }
-//
-//  private void saveUserToken(User user, String jwtToken) {
-//    var token = Token.builder()
-//        .user(user)
-//        .token(jwtToken)
-//        .tokenType(TokenType.BEARER)
-//        .expired(false)
-//        .revoked(false)
-//        .build();
-//    tokenRepository.save(token);
-//  }
-//
-////  private void revokeAllUserTokens(User user) {
-////    var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
-////    if (validUserTokens.isEmpty())
-////      return;
-////    validUserTokens.forEach(token -> {
-////      token.setExpired(true);
-////      token.setRevoked(true);
-////    });
-////    tokenRepository.saveAll(validUserTokens);
-////  }
-//
-////  public void refreshToken(
-////          HttpServletRequest request,
-////          HttpServletResponse response
-////  ) throws IOException {
-////    final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-////    final String refreshToken;
-////    final String userEmail;
-////    if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
-////      return;
-////    }
-////    refreshToken = authHeader.substring(7);
-////    userEmail = jwtService.extractUsername(refreshToken);
-////    if (userEmail != null) {
-////      var user = this.repository.findByEmail(userEmail)
-////              .orElseThrow();
-////      if (jwtService.isTokenValid(refreshToken, user)) {
-////        var accessToken = jwtService.generateToken(user);
-////        revokeAllUserTokens(user);
-////        saveUserToken(user, accessToken);
-////        var authResponse = AuthenticationResponse.builder()
-////                .accessToken(accessToken)
-////                .refreshToken(refreshToken)
-////                .build();
-////        new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
-////      }
-////    }
-////  }
+
+    private final AuthenticationManager authenticationManager;
+    private final AccountDTOMapper accountDTOMapper;
+    private final JWTUtil jwtUtil;
+private final PasswordEncoder passwordEncoder;
+private final AccountRepository repository;
+//private  final J
+    public AuthenticationResponse register(RegisterCustomerRequest request) {
+        var user = Account.builder()
+//                .firstname(request.getFirstname())
+//                .lastname(request.getLastname())
+//                .email(request.getEmail())
+//                .name(request.getName())
+                .userLogin(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.CUSTOMER)
+                .status(Status.ACTIVE)
+                .build();
+        repository.save(user);
+//    var savedUser = repository.save(user);
+//        var jwtToken = jwtService.generateToken(user);
+//    var refreshToken = jwtService.generateRefreshToken(user);
+        String token = jwtUtil.issueToken(user.getUsername(), user.getRole().toString());
+
+        return AuthenticationResponse.builder()
+                .token(token)
+                .accountDTO(accountDTOMapper.apply(user))
+                .build();
+    }
+
+//    public AuthenticationService(AuthenticationManager authenticationManager,
+//                                 UserDTOMapper userDTOMapper,
+//                                 JWTUtil jwtUtil) {
+//        this.authenticationManager = authenticationManager;
+//        this.userDTOMapper = userDTOMapper;
+//        this.jwtUtil = jwtUtil;
+//    }
+
+    public AuthenticationResponse login(AuthenticationRequest request) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.username(),
+                        request.password()
+                )
+        );
+        Account principal = (Account) authentication.getPrincipal();
+        AccountDTO accountDTO = accountDTOMapper.apply(principal);
+        String token = jwtUtil.issueToken(accountDTO.userName(), accountDTO.role());
+        return new AuthenticationResponse(token, accountDTO);
+    }
+
 }

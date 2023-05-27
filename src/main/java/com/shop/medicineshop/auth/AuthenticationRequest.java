@@ -1,16 +1,7 @@
 package com.shop.medicineshop.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class AuthenticationRequest {
-
-  private String email;
-  String password;
+public record AuthenticationRequest(
+        String username,
+        String password
+) {
 }

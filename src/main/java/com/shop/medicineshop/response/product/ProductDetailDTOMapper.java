@@ -20,21 +20,19 @@ private AssetDTOMapper assetDTOMapper;
     @Override
     public ProductDetailDTO apply(ProductDetail productDetail) {
         Product product = productDetail.getProduct();
-
         List<AssetDTO> assetDTOS = assetDTOMapper.mapAssetsToDTO(product.getAssets());
         List<UnitDTO> unitDTOS = unitDTOMapper.mapUnitsToDTO(product.getUnits());
        ProductDTO productDTO = productDTOMapper.apply(product);
         return new ProductDetailDTO(
-
                 productDTO.id(),
-                productDTO.categoryID(),
+                product.getCategory().getName(),
                 productDTO.name(),
                 productDTO.slug(),
                 unitDTOS,
                 assetDTOS,
                 productDTO.unit(),
                 productDTO.specifications(),
-                productDTO.asset(),
+//                productDTO.asset(),
                 productDTO.price(),
                 productDTO.discount(),
                 productDTO.quantity(),
