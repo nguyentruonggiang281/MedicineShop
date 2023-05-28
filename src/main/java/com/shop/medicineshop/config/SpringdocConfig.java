@@ -35,12 +35,12 @@ public class SpringdocConfig {
                 .pathsToMatch(paths)
                 .build();
     }
-    @Bean
-    public GroupedOpenApi image(){
-        String [] paths = {"/images/**"};
-        return GroupedOpenApi.builder()
-                .group("image")
-                .pathsToMatch(paths)
-                .build();
-    }
+//    @Bean
+//    public GroupedOpenApi image(){
+//        String [] paths = {"/images/**"};
+//        return GroupedOpenApi.builder()
+//                .group("image")
+//                .pathsToMatch(paths)
+//                .build();
+//    }
 }

@@ -39,7 +39,7 @@ public class SecurityFilterChainConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
-
+//                .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/api/v1/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

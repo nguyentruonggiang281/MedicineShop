@@ -18,5 +18,5 @@ public interface UnitRepository extends JpaRepository<Unit,Integer> {
     @Query("select u from Unit u inner join u.products products where products.id = ?1")
     List<Unit> findByProducts_Id(Integer id);
 
-
+Unit getUnitByUnitId(Integer unitId);
 }

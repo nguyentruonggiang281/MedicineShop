@@ -26,9 +26,4 @@ public class Address {
     @Column(name = "street", nullable = false)
     private String street;
 
-    @OneToMany(mappedBy="address", cascade=CascadeType.ALL)
-    private List<CustomerAddress> customerAddresses;
-
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
-    private Store store;
 }

@@ -1,14 +1,23 @@
 package com.shop.medicineshop.model.customer;
 
 import com.shop.medicineshop.model.account.Account;
+import com.shop.medicineshop.model.cart.Cart;
+import com.shop.medicineshop.model.product.ProductDetail;
 import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "customer")
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Component
+@Builder
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +37,9 @@ public class Customer {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Cart cart;
 
     @OneToMany(mappedBy="customer", cascade=CascadeType.ALL)
     private List<CustomerAddress> customerAddresses;
