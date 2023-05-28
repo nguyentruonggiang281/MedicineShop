@@ -3,10 +3,7 @@ package com.shop.medicineshop.model.customer;
 import com.shop.medicineshop.model.account.Account;
 import com.shop.medicineshop.model.cart.Cart;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -18,6 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Component
 public class Customer {
     @Id

@@ -27,7 +27,7 @@ public class Cart {
     private List<CartItem> cartItems;
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
