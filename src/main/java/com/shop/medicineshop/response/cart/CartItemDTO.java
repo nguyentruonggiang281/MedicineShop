@@ -19,9 +19,12 @@ import java.sql.Timestamp;
 public class CartItemDTO {
 
     private Integer cartItemId;
+    private Integer productId;
+    private String asset;
     private String productName;
     private Integer quantity;
     private Float totalPrice;
+    private Integer idUnit;
     private String unit;
 
 }

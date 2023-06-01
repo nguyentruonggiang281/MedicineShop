@@ -25,12 +25,12 @@ public class CartController {
         return ResponseEntity.ok().body(cartService.addItem(request));
     }
 
-    @PutMapping("/{idItem}")
-    public ResponseEntity<?> updateItem(@PathVariable Integer idItem, @RequestBody UpdateCartItemRequest request) {
-        if (cartService.updateItem(idItem , request) == null){
+    @PutMapping(" ")
+    public ResponseEntity<?> updateItem( @RequestBody UpdateCartItemRequest request) {
+        if (cartService.updateItem( request) == null){
             return ResponseEntity.badRequest().body("failed to update cart");
         }
-        return ResponseEntity.ok().body(cartService.updateItem(idItem, request));
+        return ResponseEntity.ok().body(cartService.updateItem( request));
     }
 
     @DeleteMapping("/{idItem}")
