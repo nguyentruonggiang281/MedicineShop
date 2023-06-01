@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -18,4 +19,5 @@ public class CustomerService {
 
         return customerRepository.findCustomerByAccount_Id(id);
     }
+
 }

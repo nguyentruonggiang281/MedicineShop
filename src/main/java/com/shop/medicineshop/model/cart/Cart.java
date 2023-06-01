@@ -16,15 +16,22 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cartId;
+    @Column(name = "cart_id")
+    private Integer id;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
     private List<CartItem> cartItems;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
 
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now();

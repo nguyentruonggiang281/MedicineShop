@@ -22,8 +22,8 @@ public class UnitDTOMapper implements Function<Unit, UnitDTO> {
         );
     }
 
-    public List<UnitDTO> mapUnitsToDTO(List<Unit> products) {
-        return products.stream()
+    public List<UnitDTO> mapUnitsToDTO(List<Unit> units) {
+        return units.stream()
                 .map(this::apply)
                 .collect(Collectors.toList());
     }
