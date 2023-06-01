@@ -62,14 +62,14 @@ public class CartService {
         return null;
     }
 
-    public CartDTO updateItem(Integer idItem, UpdateCartItemRequest request) {
+    public CartDTO updateItem(UpdateCartItemRequest request) {
 
-        Optional<CartItem> cartItem = cartItemRepository.findCartItemByCartItemId(idItem);
+        Optional<CartItem> cartItem = cartItemRepository.findCartItemByCartItemId(request.getIdItem());
 
         if (cartItem.isPresent()) {
+            cartItem.get().setUnit(unitRepository.getUnitByUnitId(request.getIdUnit()));
             cartItem.get().setQuantity(request.getQuantity());
             cartItem.get().setPrice(request.getPrice());
-            cartItem.get().setUnit(unitRepository.getUnitByUnitId(request.getIdUnit()));
             cartItemRepository.save(cartItem.get());
             return cartDTOMapper.apply(cartItem.get().getCart());
         }

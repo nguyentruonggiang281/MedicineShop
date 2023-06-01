@@ -1,9 +1,19 @@
 package com.shop.medicineshop.response.product;
 
-public record UnitDTO(
-//        Integer unitId,
-        String name,
-        Integer rank,
-        Integer specifications
-) {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class UnitDTO {
+    private Integer unitId;
+    private String name;
+    private Integer rank;
+    private float priceUnit;
+    private Integer specifications;
+
 }
