@@ -14,7 +14,6 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Component
 public class Unit {
     @Id
