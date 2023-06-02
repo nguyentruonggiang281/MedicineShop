@@ -25,7 +25,7 @@ public class CartController {
         return ResponseEntity.ok().body(cartService.addItem(request));
     }
 
-    @PutMapping(" ")
+    @PutMapping("/update-item")
     public ResponseEntity<?> updateItem( @RequestBody UpdateCartItemRequest request) {
         if (cartService.updateItem( request) == null){
             return ResponseEntity.badRequest().body("failed to update cart");
