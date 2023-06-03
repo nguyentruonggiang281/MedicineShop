@@ -15,9 +15,4 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer getCustomerByAccountId(int id) {
-
-        return customerRepository.findCustomerByAccount_Id(id);
-    }
-
 }

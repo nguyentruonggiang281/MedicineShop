@@ -30,4 +30,8 @@ public class Address {
     @Column(name = "street", nullable = false)
     private String street;
 
+    public String toString() {
+        return this.street + ", " + this.ward + ", " + this.district + ", " + this.province;
+    }
+
 }

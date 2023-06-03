@@ -4,11 +4,16 @@ import com.shop.medicineshop.model.account.Account;
 import com.shop.medicineshop.model.address.Address;
 import com.shop.medicineshop.model.product.Product;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "store")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +42,7 @@ public class Store {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 
+    public String toString(){
+        return "Store{" + getId() + "," + getName() + "," + getEmail() + "," + getAddress().toString();
+    }
 }

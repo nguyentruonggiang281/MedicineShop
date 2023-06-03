@@ -77,7 +77,7 @@ public class CartService {
         return null;
     }
 
-    public CartDTO deleteItem( Integer idItem) {
+    public CartDTO deleteItem(Integer idItem) {
             Optional<CartItem> cartItem = cartItemRepository.findById(idItem);
             if (cartItem.isPresent()) {
                 cartItemRepository.deleteById(idItem);
