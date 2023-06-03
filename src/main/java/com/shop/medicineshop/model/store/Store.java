@@ -30,7 +30,6 @@ public class Store {
     @JoinColumn(name = "account_id")
     private Account account;
 
-
 //    @Column(name = "address", nullable = false)
     @OneToOne
     @JoinColumn(name = "address_id")
