@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Integer> {
@@ -18,6 +19,8 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 
     @Query("select p from Product p inner join p.tags tags where tags.id = ?1")
     List<Product> findByTags_Id(Integer id);
+
+    Optional<Product> findById(Integer productId);
 
 
 // List<Product> findProductByTagsIs;

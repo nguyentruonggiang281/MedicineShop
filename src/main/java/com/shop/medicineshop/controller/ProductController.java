@@ -99,6 +99,15 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.getProductsByTag(tagSlug));
     }
 
+    @GetMapping("/{id}/quantity-units")
+    public ResponseEntity<?> getProductQuantity(@PathVariable Integer id) {
+        List<UnitDTO> unitDTOs = productService.getProductQuantityPerUnit(id);
+        if (unitDTOs.isEmpty() || unitDTOs == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(unitDTOs);
+    }
+
 
     /**
      * Thêm một sản phẩm mới vào hệ thống.
