@@ -13,6 +13,8 @@ import com.shop.medicineshop.repository.CustomerRepository;
 import com.shop.medicineshop.repository.address.AddressRepository;
 import com.shop.medicineshop.repository.cart.CartRepository;
 import com.shop.medicineshop.repository.store.StoreRepository;
+import com.shop.medicineshop.request.RegisAdminRequest;
+import com.shop.medicineshop.request.RegisterCustomerRequest;
 import com.shop.medicineshop.request.RegisterStoreRequest;
 import com.shop.medicineshop.response.account.AccountDTO;
 import com.shop.medicineshop.response.account.AccountDTOMapper;
@@ -101,6 +103,21 @@ public class AuthenticationService {
                 .accountDTO(accountDTOMapper.apply(storeAccount))
                 .build();
     }
+    @Transactional
+    public AuthenticationResponse register(RegisAdminRequest request) {
+        var adminAccount = repository.save(Account.builder()
+                .userLogin(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.ADMIN)
+                .status(Status.ACTIVE)
+                .build());
+        String token = jwtUtil.issueToken(adminAccount.getUsername(), adminAccount.getRole().toString());
+        return AuthenticationResponse.builder()
+                .token(token)
+                .accountDTO(accountDTOMapper.apply(adminAccount))
+                .build();
+    }
+
 
     public AuthenticationResponse login(AuthenticationRequest request) {
         Authentication authentication = authenticationManager.authenticate(
