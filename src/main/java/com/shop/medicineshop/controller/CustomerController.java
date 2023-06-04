@@ -15,18 +15,28 @@ import java.util.List;
 @RequestMapping("api/v1/customers")
 public class CustomerController {
     @Autowired
-
     private CustomerService customerService;
     @Autowired
     private CartService cartService;
 
+
+    @GetMapping("/{idAccount}")
+    public ResponseEntity<?> getInfoCustomer(@PathVariable Integer idAccount) {
+        return ResponseEntity.ok().body(customerService.getInfoCustomer(idAccount));
+    }
+
     @GetMapping("/{idAccount}/carts")
     public ResponseEntity<?> getAllCartItemByCustomer(@PathVariable Integer idAccount) {
-        {   if (cartService.getAllCartItemByCustomer(idAccount) != null)
-            return ResponseEntity.ok().body(cartService.getAllCartItemByCustomer(idAccount));
-    }
+        {
+            if (cartService.getAllCartItemByCustomer(idAccount) != null)
+                return ResponseEntity.ok().body(cartService.getAllCartItemByCustomer(idAccount));
+        }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found account");
     }
 
+    @GetMapping("/{idAccount}/orders")
+    public ResponseEntity<?> getAllOrderByCustomer(@PathVariable Integer idAccount) {
+        return null;
+    }
 
 }

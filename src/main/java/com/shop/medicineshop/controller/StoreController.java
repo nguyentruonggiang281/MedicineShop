@@ -27,8 +27,44 @@ public class StoreController {
     public ResponseEntity<?> getStoresNearestInSameProvince(@PathVariable("idAddress") Integer idAddress,
                                                             @PathVariable("maxResults") Integer maxResults) {
         List<StoreDTO> re = storeService.getStoresNearest(idAddress, maxResults);
-        if(re != null)
+        if (re != null)
             return ResponseEntity.ok().body(re);
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/{idStore}/Orders")
+    public ResponseEntity<?> getAllOrderByStore(@PathVariable("idStore") Integer idStore) {
+//        to do
+        return null;
+    }
+
+    @GetMapping("/{idStore}/products")
+    public ResponseEntity<?> getProductsInStore(@PathVariable("idStore") Integer idStore) {
+//        to do
+        return null;
+    }
+
+    @PostMapping("/{idStore}/products")
+    public ResponseEntity<?> createProductInStore(@PathVariable("idStore") Integer idStore,
+                                                  @RequestBody StoreRequest storeRequest____) {
+//        to do
+        return null;
+    }
+
+    @PutMapping("/{idStore}/products/{idProduct}/{quantity}")
+    public ResponseEntity<?> updateProductInStore(@PathVariable("idStore") Integer idStore,
+                                                  @PathVariable("idProduct") Integer idProduct,
+                                                  @PathVariable("quantity") Integer quantity) {
+//        to do
+        return null;
+
+    }
+
+    @DeleteMapping("/{idStore}/products/{idProduct}")
+    public ResponseEntity<?> getProductInStore(@PathVariable("idStore") Integer idStore,
+                                               @PathVariable("idProduct") Integer idProduct) {
+//        to do
+        return null;
+    }
+
 }

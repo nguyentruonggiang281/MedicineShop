@@ -54,21 +54,21 @@ public class ProductService {
 
 
     public List<UnitDTO> getProductQuantityPerUnit(Integer productId) {
-        Optional<Product> p = productRepository.findById(productId);
-        List<UnitDTO> unitDTOs = new ArrayList<>();
-        if(p.isPresent()) {
-            double basePrice = p.get().getPrice();
-            int baseQuantity = p.get().getQuantity();
-            int baseSpecifications = 1;
-            List<Unit> units = p.get().getUnits();
-            for(int rank = units.size() - 1; rank >= 0; rank--) {
-                Unit u = units.get(rank);
-                UnitDTO unitDTO = new UnitDTO(u.getName(), rank, u.getSpecifications(), basePrice * baseSpecifications, baseQuantity / baseSpecifications);
-                baseSpecifications *= u.getSpecifications();
-                unitDTOs.add(unitDTO);
-            }
-            return unitDTOs;
-        }
+//        Optional<Product> p = productRepository.findById(productId);
+//        List<UnitDTO> unitDTOs = new ArrayList<>();
+//        if(p.isPresent()) {
+//            double basePrice = p.get().getPrice();
+//            int baseQuantity = p.get().getQuantity();
+//            int baseSpecifications = 1;
+//            List<Unit> units = p.get().getUnits();
+//            for(int rank = units.size() - 1; rank >= 0; rank--) {
+//                Unit u = units.get(rank);
+//                UnitDTO unitDTO = new UnitDTO(u.getUnitId() ,u.getName(), rank, basePrice * baseSpecifications, baseQuantity / baseSpecifications,u.getSpecifications());
+//                baseSpecifications *= u.getSpecifications();
+//                unitDTOs.add(unitDTO);
+//            }
+//            return unitDTOs;
+//        }
         return null;
     }
 

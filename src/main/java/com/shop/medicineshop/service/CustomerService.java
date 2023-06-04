@@ -15,4 +15,7 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
+    public Object getInfoCustomer(Integer idAccount) {
+        return null;
+    }
 }

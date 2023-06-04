@@ -1,5 +1,10 @@
-package com.shop.medicineshop.auth;
+package com.shop.medicineshop.controller;
 
+import com.shop.medicineshop.auth.AuthenticationRequest;
+import com.shop.medicineshop.auth.AuthenticationResponse;
+import com.shop.medicineshop.auth.AuthenticationService;
+import com.shop.medicineshop.auth.RegisterCustomerRequest;
+import com.shop.medicineshop.request.RegisterStoreRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +33,23 @@ public class AuthenticationController {
                 .body(response);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register-customer")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterCustomerRequest request
     ) {
         return ResponseEntity.ok(authenticationService.register(request));
+    }
+
+
+    @PostMapping("/register-store")
+    public ResponseEntity<AuthenticationResponse> registerStore(  @RequestBody RegisterStoreRequest request){
+// To do
+        return null;
+    }
+
+    @PostMapping("/register-admin")
+    public ResponseEntity<AuthenticationResponse> registerStore(){
+// To do
+        return null;
     }
 }
