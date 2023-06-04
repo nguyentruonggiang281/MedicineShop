@@ -2,6 +2,7 @@ package com.shop.medicineshop.controller;
 
 import com.shop.medicineshop.request.StoreRequest;
 import com.shop.medicineshop.response.order.OrderDTO;
+import com.shop.medicineshop.response.product.ProductDTO;
 import com.shop.medicineshop.response.store.StoreDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,10 @@ public class StoreController {
 
     @GetMapping("/{idStore}/products")
     public ResponseEntity<?> getProductsInStore(@PathVariable("idStore") Integer idStore) {
-//        to do
-        return null;
+        List<ProductDTO> re = storeService.getAllStoreProduct(idStore);
+        if(re != null && re.size() > 0)
+            return ResponseEntity.ok().body(re);
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping("/{idStore}/products/{idProduct}/{quantity}")

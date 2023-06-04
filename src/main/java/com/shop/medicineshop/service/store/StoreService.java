@@ -2,6 +2,7 @@ package com.shop.medicineshop.service.store;
 
 import com.shop.medicineshop.model.address.Address;
 import com.shop.medicineshop.model.order.Order;
+import com.shop.medicineshop.model.product.Product;
 import com.shop.medicineshop.model.store.Store;
 import com.shop.medicineshop.model.store.StoreProduct;
 import com.shop.medicineshop.model.store.StoreProductId;
@@ -13,6 +14,7 @@ import com.shop.medicineshop.request.StoreRequest;
 import com.shop.medicineshop.response.order.OrderDTO;
 import com.shop.medicineshop.response.order.OrderMapper;
 import com.shop.medicineshop.response.product.ProductDTO;
+import com.shop.medicineshop.response.product.ProductDTOMapper;
 import com.shop.medicineshop.response.store.StoreDTO;
 import com.shop.medicineshop.response.store.StoreMapper;
 import com.shop.medicineshop.response.store.StoreProductDTO;
@@ -45,6 +47,8 @@ public class StoreService {
     OrderRepository orderRepository;
     @Autowired
     StoreProductRepository storeProductRepository;
+    @Autowired
+    ProductDTOMapper productDTOMapper;
 
     @Transactional
     public boolean createStore(StoreRequest storeRQ) {
@@ -114,5 +118,14 @@ public class StoreService {
             storeProductRepository.save(storeProduct);
             return StoreProductDTO.builder().storeId(idStore).productId(idProduct).quantity(storeProduct.getQuantity()).build();
         }
+    }
+
+    public List<ProductDTO> getAllStoreProduct(int idStore) {
+        List<ProductDTO> result = new ArrayList<>();
+        List<StoreProduct> storeProducts = storeProductRepository.findAllByStore_Id(idStore);
+        for(StoreProduct sp : storeProducts){
+            result.add(productDTOMapper.map(sp.getProduct(), sp.getQuantity()));
+        }
+        return result;
     }
 }

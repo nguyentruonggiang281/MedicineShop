@@ -12,4 +12,5 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     Optional<Store> findById(Integer id);
 
     List<Store> findByAddress_Province(String province);
+
 }

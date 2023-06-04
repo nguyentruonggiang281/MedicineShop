@@ -33,6 +33,23 @@ public class ProductDTOMapper implements Function<Product, ProductDTO> {
                 product.isFeatured());
     }
 
+    public ProductDTO map(Product product, int quantity) {
+        return new ProductDTO(
+                product.getId(),
+                getIdIfNotNull(product.getCategory()),
+                product.getName(),
+                product.getSlug(),
+                getUnit(product),
+                getSpecifications(product),
+                getAsset(product),
+                product.getPrice(),
+                product.getDiscount(),
+                quantity,
+                product.getSold(),
+                product.isStatus(),
+                product.isFeatured());
+    }
+
     public String getUnit(Product product) {
         String unit = "";
         if (product.getUnits() != null) {
