@@ -44,9 +44,10 @@ public class StoreController {
         return null;
     }
 
-    @PostMapping("/{idStore}/products")
+    @PostMapping("/{idStore}/products/{idProduct}/{quantity}")
     public ResponseEntity<?> createProductInStore(@PathVariable("idStore") Integer idStore,
-                                                  @RequestBody StoreRequest storeRequest____) {
+                                                  @PathVariable("idProduct") Integer idProduct,
+                                                  @PathVariable("quantity") Integer quantity){
 //        to do
         return null;
     }
@@ -60,7 +61,7 @@ public class StoreController {
 
     }
 
-    @DeleteMapping("/{idStore}/products/{idProduct}")
+    @GetMapping("/{idStore}/products/{idProduct}")
     public ResponseEntity<?> getProductInStore(@PathVariable("idStore") Integer idStore,
                                                @PathVariable("idProduct") Integer idProduct) {
 //        to do

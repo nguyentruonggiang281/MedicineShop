@@ -42,9 +42,9 @@ public class AuthenticationController {
 
 
     @PostMapping("/register-store")
-    public ResponseEntity<AuthenticationResponse> registerStore(  @RequestBody RegisterStoreRequest request){
-// To do
-        return null;
+    public ResponseEntity<AuthenticationResponse> registerStore(@RequestBody RegisterStoreRequest request){
+        // To do
+        return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/register-admin")

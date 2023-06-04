@@ -4,6 +4,7 @@ import com.shop.medicineshop.model.address.Address;
 import com.shop.medicineshop.model.store.Store;
 import com.shop.medicineshop.repository.address.AddressRepository;
 import com.shop.medicineshop.request.StoreRequest;
+import com.shop.medicineshop.response.order.OrderDTO;
 import com.shop.medicineshop.response.store.StoreDTO;
 import com.shop.medicineshop.response.store.StoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,10 @@ public class StoreService {
                 }
             }
         }
+        return null;
+    }
+
+    public List<OrderDTO> getAllOrderByStore(Integer idStore) {
         return null;
     }
 }
