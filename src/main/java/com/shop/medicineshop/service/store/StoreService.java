@@ -1,15 +1,22 @@
-package com.shop.medicineshop.service;
+package com.shop.medicineshop.service.store;
 
 import com.shop.medicineshop.model.address.Address;
 import com.shop.medicineshop.model.order.Order;
 import com.shop.medicineshop.model.store.Store;
+import com.shop.medicineshop.model.store.StoreProduct;
+import com.shop.medicineshop.model.store.StoreProductId;
 import com.shop.medicineshop.repository.address.AddressRepository;
 import com.shop.medicineshop.repository.order.OrderRepository;
+import com.shop.medicineshop.repository.product.ProductRepository;
+import com.shop.medicineshop.repository.store.StoreProductRepository;
 import com.shop.medicineshop.request.StoreRequest;
 import com.shop.medicineshop.response.order.OrderDTO;
 import com.shop.medicineshop.response.order.OrderMapper;
+import com.shop.medicineshop.response.product.ProductDTO;
 import com.shop.medicineshop.response.store.StoreDTO;
 import com.shop.medicineshop.response.store.StoreMapper;
+import com.shop.medicineshop.response.store.StoreProductDTO;
+import com.shop.medicineshop.service.DistanceCalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.shop.medicineshop.repository.store.StoreRepository;
@@ -25,15 +32,19 @@ public class StoreService {
     @Autowired
     StoreRepository storeRepository;
     @Autowired
+    ProductRepository productRepository;
+    @Autowired
     AddressRepository addressRepository;
     @Autowired
-    DistanceCalculatorService  distanceCalculatorService;
+    DistanceCalculatorService distanceCalculatorService;
     @Autowired
     StoreMapper storeMapper;
     @Autowired
     OrderMapper orderMapper;
     @Autowired
     OrderRepository orderRepository;
+    @Autowired
+    StoreProductRepository storeProductRepository;
 
     @Transactional
     public boolean createStore(StoreRequest storeRQ) {
@@ -83,5 +94,25 @@ public class StoreService {
             return orderDTOs;
         }
         return null;
+    }
+
+    @Transactional
+    public StoreProductDTO addOrUpdateProduct(int idStore, int idProduct, int quantity) {
+        Optional<StoreProduct> option = storeProductRepository.findByProductIdAndStoreId(idProduct, idStore);
+        if(option.isPresent()){
+            StoreProduct storeProduct = option.get();
+            storeProduct.setQuantity(option.get().getQuantity() + quantity);
+            storeProductRepository.save(storeProduct);
+            return StoreProductDTO.builder().storeId(idStore).productId(idProduct).quantity(storeProduct.getQuantity()).build();
+        }else {
+            StoreProduct storeProduct = new StoreProduct();
+            StoreProductId id = new StoreProductId(idStore, idProduct);
+            storeProduct.setId(id);
+            storeProduct.setStore(storeRepository.findById(idStore).get());
+            storeProduct.setProduct(productRepository.findById(idProduct).get());
+            storeProduct.setQuantity(quantity);
+            storeProductRepository.save(storeProduct);
+            return StoreProductDTO.builder().storeId(idStore).productId(idProduct).quantity(storeProduct.getQuantity()).build();
+        }
     }
 }

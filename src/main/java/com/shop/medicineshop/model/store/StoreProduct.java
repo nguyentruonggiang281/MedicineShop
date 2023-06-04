@@ -2,9 +2,17 @@ package com.shop.medicineshop.model.store;
 
 import com.shop.medicineshop.model.product.Product;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "store_product")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class StoreProduct {
 
     @EmbeddedId

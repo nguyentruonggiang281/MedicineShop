@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.shop.medicineshop.service.StoreService;
+import com.shop.medicineshop.service.store.StoreService;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class StoreController {
     @GetMapping("/{idStore}/orders")
     public ResponseEntity<?> getAllOrderByStore(@PathVariable("idStore") Integer idStore) {
         List<OrderDTO> re = storeService.getAllOrderByStore(idStore);
-        if (re != null)
+        if (re != null && re.size() > 0)
             return ResponseEntity.ok().body(re);
         return ResponseEntity.notFound().build();
     }
@@ -51,17 +51,14 @@ public class StoreController {
     public ResponseEntity<?> createProductInStore(@PathVariable("idStore") Integer idStore,
                                                   @PathVariable("idProduct") Integer idProduct,
                                                   @PathVariable("quantity") Integer quantity){
-//        to do
-        return null;
+        return ResponseEntity.ok().body(storeService.addOrUpdateProduct(idStore, idProduct, quantity));
     }
 
     @PutMapping("/{idStore}/products/{idProduct}/{quantity}")
     public ResponseEntity<?> updateProductInStore(@PathVariable("idStore") Integer idStore,
                                                   @PathVariable("idProduct") Integer idProduct,
-                                                  @PathVariable("quantity") Integer quantity) {
-//        to do
-        return null;
-
+                                                  @PathVariable("quantity") Integer quantity) {// cộng thêm một lượng quantity
+        return ResponseEntity.ok().body(storeService.addOrUpdateProduct(idStore, idProduct, quantity));
     }
 
     @GetMapping("/{idStore}/products/{idProduct}")

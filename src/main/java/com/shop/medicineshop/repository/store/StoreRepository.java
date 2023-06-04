@@ -1,6 +1,7 @@
 package com.shop.medicineshop.repository.store;
 
 import com.shop.medicineshop.model.order.Order;
+import com.shop.medicineshop.model.product.Product;
 import com.shop.medicineshop.model.store.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
 
