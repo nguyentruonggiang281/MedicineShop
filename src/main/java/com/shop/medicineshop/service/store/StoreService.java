@@ -128,4 +128,9 @@ public class StoreService {
         }
         return result;
     }
+
+    public ProductDTO getStoreProductById(int idStore, int idProduct) {
+        Optional<StoreProduct> option = storeProductRepository.findByProductIdAndStoreId(idProduct, idStore);
+        return option.map(storeProduct -> productDTOMapper.map(storeProduct.getProduct(), storeProduct.getQuantity())).orElse(null);
+    }
 }

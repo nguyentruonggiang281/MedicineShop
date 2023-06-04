@@ -67,8 +67,10 @@ public class StoreController {
     @GetMapping("/{idStore}/products/{idProduct}")
     public ResponseEntity<?> getProductInStore(@PathVariable("idStore") Integer idStore,
                                                @PathVariable("idProduct") Integer idProduct) {
-//        to do
-        return null;
+        ProductDTO re = storeService.getStoreProductById(idStore, idProduct);
+        if (re != null)
+            return ResponseEntity.ok().body(re);
+        return ResponseEntity.notFound().build();
     }
 
 }
