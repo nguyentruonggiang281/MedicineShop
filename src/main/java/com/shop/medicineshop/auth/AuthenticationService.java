@@ -7,16 +7,21 @@ import com.shop.medicineshop.model.account.Role;
 import com.shop.medicineshop.model.account.Status;
 import com.shop.medicineshop.model.cart.Cart;
 import com.shop.medicineshop.model.customer.Customer;
+import com.shop.medicineshop.model.store.Store;
 import com.shop.medicineshop.repository.AccountRepository;
 import com.shop.medicineshop.repository.CustomerRepository;
+import com.shop.medicineshop.repository.address.AddressRepository;
 import com.shop.medicineshop.repository.cart.CartRepository;
+import com.shop.medicineshop.repository.store.StoreRepository;
+import com.shop.medicineshop.request.RegisAdminRequest;
+import com.shop.medicineshop.request.RegisterCustomerRequest;
+import com.shop.medicineshop.request.RegisterStoreRequest;
 import com.shop.medicineshop.response.account.AccountDTO;
 import com.shop.medicineshop.response.account.AccountDTOMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +37,8 @@ public class AuthenticationService {
     private final AccountRepository repository;
     private final CustomerRepository customerRepository;
     private final CartRepository cartRepository;
+    private final StoreRepository storeRepository;
+    private final AddressRepository addressRepository;
 
     @Transactional
     public AuthenticationResponse register(RegisterCustomerRequest request) {
@@ -42,7 +49,6 @@ public class AuthenticationService {
                 .status(Status.ACTIVE)
                 .build();
         repository.save(user);
-
 
         Customer customer = new Customer();
         customer.setAccount(user);
@@ -72,6 +78,46 @@ public class AuthenticationService {
 //        this.userDTOMapper = userDTOMapper;
 //        this.jwtUtil = jwtUtil;
 //    }
+
+    @Transactional
+    public AuthenticationResponse register(RegisterStoreRequest request) {
+        var storeAccount = repository.save(Account.builder()
+                                                .userLogin(request.getEmail())
+                                                .password(passwordEncoder.encode(request.getPassword()))
+                                                .role(Role.STORE)
+                                                .status(Status.ACTIVE)
+                                                .build());
+
+        Store store = new Store();
+        store.setName(request.getName());
+        store.setEmail(request.getEmail());
+        store.setAddress(addressRepository.save(request.getAddress()));
+        store.setAccount(storeAccount);
+
+        storeRepository.save(store);
+
+        String token = jwtUtil.issueToken(storeAccount.getUsername(), storeAccount.getRole().toString());
+
+        return AuthenticationResponse.builder()
+                .token(token)
+                .accountDTO(accountDTOMapper.apply(storeAccount))
+                .build();
+    }
+    @Transactional
+    public AuthenticationResponse register(RegisAdminRequest request) {
+        var adminAccount = repository.save(Account.builder()
+                .userLogin(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.ADMIN)
+                .status(Status.ACTIVE)
+                .build());
+        String token = jwtUtil.issueToken(adminAccount.getUsername(), adminAccount.getRole().toString());
+        return AuthenticationResponse.builder()
+                .token(token)
+                .accountDTO(accountDTOMapper.apply(adminAccount))
+                .build();
+    }
+
 
     public AuthenticationResponse login(AuthenticationRequest request) {
         Authentication authentication = authenticationManager.authenticate(

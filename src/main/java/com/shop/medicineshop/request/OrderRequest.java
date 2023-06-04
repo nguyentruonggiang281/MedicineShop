@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequest {
-    private Integer idOrder;
     private Integer idAccount;
     private Integer idAddress;
     private Integer idStore;

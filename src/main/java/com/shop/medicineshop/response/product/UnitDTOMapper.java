@@ -19,7 +19,8 @@ public class UnitDTOMapper implements Function<Unit, UnitDTO> {
                 unit.getUnitId(),
                 unit.getName(),
                 unit.getRank(),
-                    0.0f,
+                -1.0f,
+                -1,
                 unit.getSpecifications()
         );
     }

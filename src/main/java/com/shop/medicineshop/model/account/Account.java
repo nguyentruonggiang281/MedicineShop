@@ -1,7 +1,5 @@
 package com.shop.medicineshop.model.account;
 
-import com.shop.medicineshop.model.customer.Customer;
-import com.shop.medicineshop.model.store.Store;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -55,13 +53,6 @@ public class Account implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
-
-    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
-    private Customer customer;
-
-    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
-    private Store store;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

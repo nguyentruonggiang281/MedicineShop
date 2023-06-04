@@ -14,7 +14,6 @@ public class UnitDTO {
     private String name;
     private Integer rank;
     private float priceUnit;
+    private int quantity;
     private Integer specifications;
-
-
 }

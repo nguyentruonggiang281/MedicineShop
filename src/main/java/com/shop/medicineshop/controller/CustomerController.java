@@ -20,6 +20,11 @@ public class CustomerController {
     private CartService cartService;
 
 
+    @GetMapping
+    public ResponseEntity<?> getAllCustomers() {
+        return ResponseEntity.ok().body(customerService.getAllCustomers());
+    }
+
     @GetMapping("/{idAccount}")
     public ResponseEntity<?> getInfoCustomer(@PathVariable Integer idAccount) {
         return ResponseEntity.ok().body(customerService.getInfoCustomer(idAccount));

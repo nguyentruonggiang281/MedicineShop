@@ -21,7 +21,7 @@ public class AddressController {
         return ResponseEntity.badRequest().body("failed to create address");
     }
 
-    @PostMapping("/{idStore}")
+    @PostMapping("/{idStore}")//test add address thôi
     public ResponseEntity<?> createAddressStore(@RequestParam Integer idStore,
                                                 @RequestBody Address address) {
         if (addressService.createAddress(address))
