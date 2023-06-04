@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "payment")
@@ -27,13 +29,14 @@ public class Payment {
     private String status;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
-    @OneToOne(mappedBy = "payment")
-    private Order order;
+    public String toString() {
+        return "method: " + paymentMethod + ", status: " + status;
+    }
 
     // constructor, getters, setters, và các phương thức khác
 

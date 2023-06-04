@@ -17,8 +17,9 @@ public class CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
-@Autowired
-private CategoryDTOMapper categoryDTOMapper;
+    @Autowired
+    private CategoryDTOMapper categoryDTOMapper;
+
     @Transactional
     public Category saveCategory(Category category) {
         return categoryRepository.save(category);

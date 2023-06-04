@@ -34,7 +34,7 @@ public class Cart {
 
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
