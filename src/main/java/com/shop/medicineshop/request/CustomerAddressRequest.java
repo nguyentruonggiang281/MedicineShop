@@ -1,5 +1,6 @@
 package com.shop.medicineshop.request;
 
+import com.shop.medicineshop.model.address.Address;
 import lombok.*;
 
 @Getter
@@ -7,10 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AddToCartRequest {
+public class CustomerAddressRequest {
     private Integer idAccount;
-    private Integer idProduct;
-    private Integer idUnit;
-    private Float price;
-    private Integer quantity;
+    private Address address;
+    private Boolean isDefault;
 }

@@ -1,19 +1,19 @@
 package com.shop.medicineshop.service.product;
 
 import com.shop.medicineshop.model.product.Product;
+import com.shop.medicineshop.model.product.Unit;
 import com.shop.medicineshop.repository.product.ProductDetailRepository;
 import com.shop.medicineshop.repository.product.ProductRepository;
 import com.shop.medicineshop.repository.product.TagRepository;
-import com.shop.medicineshop.response.product.ProductDTO;
-import com.shop.medicineshop.response.product.ProductDTOMapper;
-import com.shop.medicineshop.response.product.ProductDetailDTO;
-import com.shop.medicineshop.response.product.ProductDetailDTOMapper;
+import com.shop.medicineshop.response.product.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -50,6 +50,26 @@ public class ProductService {
     public List<ProductDTO> getProductsByCategoryId(Integer categoryId) {
 
         return productDTOMapper.mapProductsToDTO(productRepository.findByCategoryId(categoryId));
+    }
+
+
+    public List<UnitDTO> getProductQuantityPerUnit(Integer productId) {
+//        Optional<Product> p = productRepository.findById(productId);
+//        List<UnitDTO> unitDTOs = new ArrayList<>();
+//        if(p.isPresent()) {
+//            double basePrice = p.get().getPrice();
+//            int baseQuantity = p.get().getQuantity();
+//            int baseSpecifications = 1;
+//            List<Unit> units = p.get().getUnits();
+//            for(int rank = units.size() - 1; rank >= 0; rank--) {
+//                Unit u = units.get(rank);
+//                UnitDTO unitDTO = new UnitDTO(u.getUnitId() ,u.getName(), rank, basePrice * baseSpecifications, baseQuantity / baseSpecifications,u.getSpecifications());
+//                baseSpecifications *= u.getSpecifications();
+//                unitDTOs.add(unitDTO);
+//            }
+//            return unitDTOs;
+//        }
+        return null;
     }
 
 

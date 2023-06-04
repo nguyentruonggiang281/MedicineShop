@@ -1,12 +1,15 @@
 package com.shop.medicineshop.model.order;
 
+import com.shop.medicineshop.model.address.Address;
 import com.shop.medicineshop.model.payment.Payment;
 import com.shop.medicineshop.model.customer.Customer;
+import com.shop.medicineshop.model.store.Store;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -19,24 +22,28 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private Long orderId;
+    private Integer orderId;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @Column(name = "status", nullable = false)
-    private String status;
+    private OrderStatus status;
 
-    @Column(name = "shipping_fee", precision = 18, scale = 2)
-    private BigDecimal shippingFee;
+    @Column(name = "shipping_fee")
+    private Float shippingFee;
 
-    @Column(name = "total", nullable = false, precision = 18, scale = 2)
-    private BigDecimal total;
+    @Column(name = "total", nullable = false)
+    private Float total;
 
     @OneToOne
     @JoinColumn(name = "payment_id")
     private Payment payment;
+
+    @OneToMany
+    @JoinColumn(name = "order_id")
+    private List<OrderItem> orderItems;
 
 //    @ManyToOne
 //    @JoinColumn(name = "coupon_id")
@@ -58,6 +65,12 @@ public class Order {
     @Column(name = "delivery_at")
     private LocalDateTime deliveryAt;
 
-//    @OneToMany(mappedBy = "order")
-//    private List<OrderDetail> orderDetails;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
+
 }

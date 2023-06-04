@@ -28,7 +28,7 @@ public class Coupon {
 //    private CouponType type;
 
     @Column(name = "coupon_value", nullable = false)
-    private BigDecimal value;
+    private Float value;
 
     @Column(name = "coupon_start_date", nullable = false)
     private LocalDate startDate;
@@ -37,10 +37,10 @@ public class Coupon {
     private LocalDate endDate;
 
     @Column(name = "coupon_min_spend")
-    private BigDecimal minSpend;
+    private Float minSpend;
 
     @Column(name = "coupon_max_spend")
-    private BigDecimal maxSpend;
+    private Float maxSpend;
 
     @Column(name = "coupon_uses_per_customer")
     private Integer usesPerCustomer;
