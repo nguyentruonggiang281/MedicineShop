@@ -11,12 +11,6 @@ public record AccountDTO(
         Status status,
         List<String> role
 
-//         Integer id,
-//        String name,
-//        String email,
-//        Gender gender,
-//        Integer age,
-//        String username
 ){
 
 }

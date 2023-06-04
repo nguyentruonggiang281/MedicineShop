@@ -133,4 +133,8 @@ public class StoreService {
         Optional<StoreProduct> option = storeProductRepository.findByProductIdAndStoreId(idProduct, idStore);
         return option.map(storeProduct -> productDTOMapper.map(storeProduct.getProduct(), storeProduct.getQuantity())).orElse(null);
     }
+
+    public List<StoreDTO> getAllStore() {
+    return storeMapper.mapList(storeRepository.findAll());
+    }
 }

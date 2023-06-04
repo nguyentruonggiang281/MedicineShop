@@ -82,7 +82,7 @@ public class AuthenticationService {
     @Transactional
     public AuthenticationResponse register(RegisterStoreRequest request) {
         var storeAccount = repository.save(Account.builder()
-                                                .userLogin(request.getUserLogin())
+                                                .userLogin(request.getEmail())
                                                 .password(passwordEncoder.encode(request.getPassword()))
                                                 .role(Role.STORE)
                                                 .status(Status.ACTIVE)

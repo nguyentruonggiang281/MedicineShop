@@ -25,6 +25,14 @@ public class StoreController {
         return ResponseEntity.badRequest().body("failed to create store");
     }
 
+    @GetMapping
+    public ResponseEntity<?> getAllStore() {
+        if (storeService.getAllStore() != null){
+            return ResponseEntity.ok().body(storeService.getAllStore());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/getTop{maxResults}StoresNearest/{idAddress}")
     public ResponseEntity<?> getStoresNearestInSameProvince(@PathVariable("idAddress") Integer idAddress,
                                                             @PathVariable("maxResults") Integer maxResults) {
