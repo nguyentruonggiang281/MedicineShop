@@ -1,10 +1,13 @@
 package com.shop.medicineshop.service;
 
 import com.shop.medicineshop.model.address.Address;
+import com.shop.medicineshop.model.order.Order;
 import com.shop.medicineshop.model.store.Store;
 import com.shop.medicineshop.repository.address.AddressRepository;
+import com.shop.medicineshop.repository.order.OrderRepository;
 import com.shop.medicineshop.request.StoreRequest;
 import com.shop.medicineshop.response.order.OrderDTO;
+import com.shop.medicineshop.response.order.OrderMapper;
 import com.shop.medicineshop.response.store.StoreDTO;
 import com.shop.medicineshop.response.store.StoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,10 @@ public class StoreService {
     DistanceCalculatorService  distanceCalculatorService;
     @Autowired
     StoreMapper storeMapper;
+    @Autowired
+    OrderMapper orderMapper;
+    @Autowired
+    OrderRepository orderRepository;
 
     @Transactional
     public boolean createStore(StoreRequest storeRQ) {
@@ -68,6 +75,13 @@ public class StoreService {
     }
 
     public List<OrderDTO> getAllOrderByStore(Integer idStore) {
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+        List<Order> orders = orderRepository.findAllByStoreId(idStore);
+        if(orders.size() > 0){
+            for(Order order : orders)
+                orderDTOs.add(orderMapper.apply(order));
+            return orderDTOs;
+        }
         return null;
     }
 }
