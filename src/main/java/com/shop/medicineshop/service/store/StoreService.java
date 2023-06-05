@@ -91,7 +91,7 @@ public class StoreService {
 
     public List<OrderDTO> getAllOrderByStore(Integer idStore) {
         List<OrderDTO> orderDTOs = new ArrayList<>();
-        List<Order> orders = orderRepository.findAllByStoreId(idStore);
+        List<Order> orders = orderRepository.findByStore_Account_Id(idStore);
         if(orders.size() > 0){
             for(Order order : orders)
                 orderDTOs.add(orderMapper.apply(order));

@@ -8,6 +8,8 @@ import com.shop.medicineshop.repository.CustomerRepository;
 import com.shop.medicineshop.repository.address.AddressRepository;
 import com.shop.medicineshop.repository.address.CustomerAddressRepository;
 import com.shop.medicineshop.request.CustomerAddressRequest;
+import com.shop.medicineshop.response.address.AddressDTO;
+import com.shop.medicineshop.response.address.AddressMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,8 @@ public class AddressService {
     private CustomerRepository customerRepository;
     @Autowired
     private CustomerAddressRepository customerAddressRepository;
-
+@Autowired
+private AddressMapper addressMapper;
     public boolean createAddress(Address address) {
         try {
             addressRepository.save(address);
@@ -34,13 +37,14 @@ public class AddressService {
     }
 
     @Transactional
-    public boolean addAddressCustomer(CustomerAddressRequest cusAddress) {
+    public AddressDTO addAddressCustomer(CustomerAddressRequest cusAddress) {
         CustomerAddress customerAddress = new CustomerAddress();
+        AddressDTO addressDTO = new AddressDTO();
         Optional<Customer> customer = customerRepository.findByAccount_Id(cusAddress.getIdAccount());
         if (customer.isPresent())
             customerAddress.setCustomer(customer.get());
         else
-            return false;
+            return null;
 
         try {
             Address address = addressRepository.save(cusAddress.getAddress());
@@ -49,11 +53,13 @@ public class AddressService {
             customerAddress.setDefault(cusAddress.getIsDefault());
             customerAddress.setId(id);
             customerAddressRepository.save(customerAddress);
+
+            addressDTO = addressMapper.apply(address);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        return addressDTO;
     }
 
 

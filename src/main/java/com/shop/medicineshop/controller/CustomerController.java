@@ -41,7 +41,9 @@ public class CustomerController {
 
     @GetMapping("/{idAccount}/orders")
     public ResponseEntity<?> getAllOrderByCustomer(@PathVariable Integer idAccount) {
-        return null;
+        if (customerService.getAllOrderByCustomer(idAccount) != null) {
+            return ResponseEntity.ok().body(customerService.getAllOrderByCustomer(idAccount));
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found");
     }
-
 }

@@ -14,7 +14,7 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<?> createOrder(@RequestBody OrderRequest request) {
         OrderDTO orderDTO = orderService.createOrder(request);
         if (orderDTO==null){
