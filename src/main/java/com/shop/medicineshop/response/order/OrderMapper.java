@@ -1,12 +1,15 @@
 package com.shop.medicineshop.response.order;
 
 import com.shop.medicineshop.model.order.Order;
+import com.shop.medicineshop.model.product.Product;
+import com.shop.medicineshop.response.product.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderMapper implements Function<Order, OrderDTO> {
@@ -31,4 +34,10 @@ public class OrderMapper implements Function<Order, OrderDTO> {
                 order.getDeliveryAt()==null ? null : order.getDeliveryAt().format(formatter)
         );
     }
+    public List<OrderDTO> mapToDTO(List<Order> orders) {
+        return orders.stream()
+                .map(this::apply)
+                .collect(Collectors.toList());
+    }
+
 }

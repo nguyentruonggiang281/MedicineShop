@@ -20,10 +20,8 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     @Query("select p from Product p inner join p.tags tags where tags.id = ?1")
     List<Product> findByTags_Id(Integer id);
 
-    Optional<Product> findById(Integer productId);
 
-
-// List<Product> findProductByTagsIs;
+    // List<Product> findProductByTagsIs;
 
 //    @Query("select p from Product p inner join p.tags tags where tags.slug = ?1")
 //    List<Product> findByTags_Slug(String slug);

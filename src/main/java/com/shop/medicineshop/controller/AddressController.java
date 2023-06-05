@@ -16,8 +16,8 @@ public class AddressController {
 
     @PostMapping()
     public ResponseEntity<?> createAddressCus(@RequestBody CustomerAddressRequest address) {
-        if (addressService.addAddressCustomer(address))
-            return ResponseEntity.ok().body("success");
+        if (addressService.addAddressCustomer(address)!=null){
+            return ResponseEntity.ok().body(addressService.addAddressCustomer(address));}
         return ResponseEntity.badRequest().body("failed to create address");
     }
 
