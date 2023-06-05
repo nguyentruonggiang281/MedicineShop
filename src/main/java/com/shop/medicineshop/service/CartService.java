@@ -16,6 +16,7 @@ import com.shop.medicineshop.response.cart.CartDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,19 +47,19 @@ public class CartService {
             if (cartItem.isPresent()) {
                 cartItem.get().setQuantity(request.getQuantity());
                 cartItem.get().setPrice(request.getPrice());
-                cartItemRepository.save(cartItem.get());
+                cartItemRepository.saveAndFlush(cartItem.get());
+                cart = cartRepository.findByCustomer_Account_Id(request.getIdAccount());
             }else {
-                CartItem cartItem1 = new CartItem();
-                cartItem1.setProduct(product);
-                cartItem1.setQuantity(request.getQuantity());
-                cartItem1.setPrice(request.getPrice());
-                cartItem1.setCart(cart.get());
-                cartItem1.setUnit(unitRepository.getUnitByUnitId(request.getIdUnit()));
-                cartItemRepository.save(cartItem1);
+                CartItem newCartItem = new CartItem();
+                newCartItem.setProduct(product);
+                newCartItem.setQuantity(request.getQuantity());
+                newCartItem.setPrice(request.getPrice());
+                newCartItem.setCart(cart.get());
+                newCartItem.setUnit(unitRepository.getUnitByUnitId(request.getIdUnit()));
+                cart.get().getCartItems().add(cartItemRepository.save(newCartItem));
             }
             return cartDTOMapper.apply(cart.get());
         }
-
         return null;
     }
 
