@@ -17,6 +17,7 @@
  - Xây dựng giao diện người dùng bằng React
  - Giao tiếp với Backend RESTful API để lấy và hiển thị dữ liệu
  - Xử lý các sự kiện và hành động của người dùng
+ - Link phần front-end: [Link](https://github.com/nguyentruonggiang281/MedicineShop-fe.git)
  ## Cơ sở dữ liệu
  - Sử dụng cơ sở dữ liệu MySQL để lưu trữ thông tin về sản phẩm, đơn hàng và tài khoản người dùng.
  ## Một số hình ảnh demo
